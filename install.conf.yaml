@@ -1,0 +1,11 @@
+- clean: ['~']
+
+- link:
+    ~/.tmux.conf: tmux.conf
+    ~/.zprofile: zprofile
+    ~/.zshrc: zshrc
+    ~/.config/nvim:
+        path: config/nvim/
+        create: true
+
+
