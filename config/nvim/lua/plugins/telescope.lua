@@ -6,7 +6,7 @@ return {
         local builtin = require('telescope.builtin')
         local actions = require('telescope.actions')
   
-        -- Disable default vim-go key mappings
+        -- Disable default vim-go key mappings.
         vim.cmd [[let g:go_def_mapping_enabled = 0]]
   
         -- Key mappings for telescope
@@ -64,4 +64,4 @@ return {
         end,
     }
   }
-  
+ 
