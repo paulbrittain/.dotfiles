@@ -1,5 +1,5 @@
 # Repository of all my dotfiles
 
-Neovim
-tmux
-Zsh
+- Neovim
+- tmux
+- Zsh
