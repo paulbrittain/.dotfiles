@@ -1,11 +1,14 @@
+
+- defaults:
+  link:
+    create: true
+    relink: true
+
 - clean: ['~']
 
 - link:
-    ~/.tmux.conf: tmux.conf
-    ~/.zprofile: zprofile
-    ~/.zshrc: zshrc
+    ~/.tmux.conf:
+    ~/.zprofile:
+    ~/.zshrc:
     ~/.config/nvim:
-        path: config/nvim/
-        create: true
-
 
