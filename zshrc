@@ -137,3 +137,10 @@ export PATH="$PATH:/Users/paulbrittain/.nsccli/bin"
 
 # Ensure /opt/homebrew/bin is at the end
 export PATH="$PATH:/opt/homebrew/bin"
+
+
+# Helio paths
+alias hcore='cd ~/Helio/core/'
+alias hargocd='cd ~/Helio/argocd/'
+alias hdeveloper='cd ~/Helio/Developer/'
+alias hterraform='cd ~/Helio/terraform/'
