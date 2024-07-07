@@ -13,20 +13,6 @@ return {
         dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
     },
 
-    {
-        "danielfalk/smart-open.nvim",
-      branch = "0.2.x",
-      config = function()
-        require"telescope".load_extension("smart_open")
-      end,
-      dependencies = {
-        {"kkharji/sqlite.lua"},
-        -- Only required if using match_algorithm fzf
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-        -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
-        { "nvim-telescope/telescope-fzy-native.nvim" },
-      }
-},
 
     'nvim-treesitter/playground',
     'nvim-treesitter/nvim-treesitter-context',
@@ -93,12 +79,6 @@ return {
     --devicons
     'kyazdani42/nvim-web-devicons',
 
-    -- Todo comments
-    -- use 'folke/todo-comments.nvim'
-
-    -- grammar checking
-    'rhysd/vim-grammarous',
-
     -- Nvim tree
     {
         'nvim-tree/nvim-tree.lua',
@@ -107,37 +87,7 @@ return {
         },
     },
 
-    -- Getting gud
-    'ThePrimeagen/vim-be-good',
-
-    -- Code screenshots
-    "ellisonleao/carbon-now.nvim",
-
     -- Tmux integration
     { "christoomey/vim-tmux-navigator",
     },
-
-  --   use({
-  --       "epwalsh/obsidian.nvim",
-  --       tag = "*",
-  --       dependencies = {
-  --       "nvim-lua/plenary.nvim",
-  -- },
-  -- config = function()
-  --   require("obsidian").setup({
-  --     workspaces = {
-  --       {
-  --         name = "personal",
-  --         path = "~/vaults/personal",
-  --       },
-  --       {
-  --         name = "helio",
-  --         path = "~/vaults/work/helio",
-  --       },
-  --     },
-
-  --     -- see below for full list of options 👇
-  --   })
-  -- end,
---})
 }

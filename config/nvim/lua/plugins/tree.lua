@@ -1,6 +1,7 @@
 return {
     "nvim-tree/nvim-tree.lua",
     requires = { "nvim-tree/nvim-web-devicons" },
+    event = 'VeryLazy',
     config = function()
       -- Disable netrw at the very start
       vim.g.loaded_netrw = 1

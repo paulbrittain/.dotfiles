@@ -1,8 +1,9 @@
 return {
     {
-      "tpope/vim-fugitive",
-      config = function()
-        -- Key mappings
+        "tpope/vim-fugitive",
+        event = "VeryLazy",
+        config = function()
+            -- Key mappings
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
         vim.keymap.set("n", "<leader>gb", ":Telescope git_branches<CR>")
   
