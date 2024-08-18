@@ -1,14 +1,17 @@
-
 - defaults:
-  link:
-    create: true
-    relink: true
+    link:
+      relink: true
 
 - clean: ['~']
 
 - link:
-    ~/.tmux.conf:
-    ~/.zprofile:
-    ~/.zshrc:
-    ~/.config/nvim:
+    ~/.tmux.conf: tmux.conf
+    ~/.zprofile: zprofile
+    ~/.zshrc: zshrc
+    ~/.config/nvim: nvim
+    ~/.config/yabai: yabai
+    ~/.config/skhd: skhd
+    ~/.config/kitty: kitty
 
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
