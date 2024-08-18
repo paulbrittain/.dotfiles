@@ -137,10 +137,16 @@ export PATH="$PATH:/Users/paulbrittain/.nsccli/bin"
 
 # Ensure /opt/homebrew/bin is at the end
 export PATH="$PATH:/opt/homebrew/bin"
+export KUBECONFIG="/Users/paulbrittain/.kube/config:/Users/paulbrittain/.kube/azure-eu-v3:/Users/paulbrittain/.kube/azure-eu-v6:/Users/paulbrittain/.kube/az-eus-2:/Users/paulbrittain/.kube/az-neu-1"
 
+export LD_LIBRARY_PATH="/Users/paulbrittain/Helio/core/workers/thumbnailprocessor/venv/lib/python3.11/site-packages/OpenImageIO/"
 
 # Helio paths
 alias hcore='cd ~/Helio/core/'
 alias hargocd='cd ~/Helio/argocd/'
 alias hdeveloper='cd ~/Helio/Developer/'
 alias hterraform='cd ~/Helio/terraform/'
+
+alias icat="kitten icat"
+
+alias fzf="fzf --preview 'bat --color=always {}'"

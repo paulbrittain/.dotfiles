@@ -21,27 +21,31 @@ return {
           dap.listeners.before.event_exited['dapui_config'] = dapui.close
         end,
       },
-      {
-        "theHamsta/nvim-dap-virtual-text",
-        event = 'VeryLazy',
-        config = function()
-          require('nvim-dap-virtual-text').setup()
-        end,
-      },
+      -- {
+      --   "theHamsta/nvim-dap-virtual-text",
+      --   event = 'VeryLazy',
+      --   config = function()
+      --     require('nvim-dap-virtual-text').setup()
+      --   end,
+      -- },
       {
         "rcarriga/nvim-dap-ui",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio"
+        },
         event = 'VeryLazy',
         config = function()
           require('dapui').setup()
         end,
       },
-      {
-        "mfussenegger/nvim-dap-python",
-        event = 'VeryLazy',
-        config = function ()
-            require('dap-python').setup("python")
-        end
-      },
+      -- {
+      --   "mfussenegger/nvim-dap-python",
+      --   event = 'VeryLazy',
+      --   config = function ()
+      --       require('dap-python').setup("python")
+      --   end
+      -- },
       {
           "leoluz/nvim-dap-go",
           event = 'VeryLazy',

@@ -2,10 +2,14 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
+    lazy = true,
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-textobjects"
+    },
     config = function()
       require'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all" (the five listed parsers should always be installed)
-        ensure_installed = { "go", "c", "lua", "vim", "vimdoc", "query" },
+        ensure_installed = { "go", "c", "lua", "vim", "vimdoc", "query", "markdown_inline", "markdown" },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
