@@ -9,6 +9,8 @@ return {
                 section_separators = '',
             },
             sections = {
+                lualine_a = {'mode'},
+                lualine_c = { { 'filename', path = 1 } },
                 lualine_x = {
                     {
                         require("noice").api.statusline.mode.get,
@@ -21,12 +23,6 @@ return {
                         color = { fg = "#ff9e64" },
                     },
                 },
-                lualine_a = {
-                    {
-                        --'buffers',
-                    }
-                },
-                lualine_c = { { 'filename', path = 1 } },
             },
         }
     end,
