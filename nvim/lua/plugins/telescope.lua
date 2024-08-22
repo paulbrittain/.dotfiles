@@ -1,6 +1,6 @@
 return {
     {
-        "nvim-telescope/telescope.nvim",
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
         requires = {{"nvim-lua/plenary.nvim"}, {"nvim-telescope/telescope-file-browser.nvim"}},
         config = function()
             local builtin = require('telescope.builtin')
@@ -36,10 +36,10 @@ return {
             require("telescope").setup {
                 defaults = {
                     layout_strategy = 'vertical',
-                    sorting_strategy = "ascending",
                     layout_config = {
                         prompt_position = "top"  -- search bar at the top
                     },
+                    sorting_strategy = "ascending",
                     vimgrep_arguments = {
                         'rg',
                         '--color=never',
