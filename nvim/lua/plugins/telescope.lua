@@ -18,9 +18,16 @@ return {
         vim.keymap.set('n', '<leader>ph', builtin.command_history, {})
         vim.keymap.set('n', '<leader>po', builtin.oldfiles, {})
         vim.keymap.set('n', '<leader>pr', ':Telescope resume<CR>')
-        vim.keymap.set('n', '<space>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>')
+        vim.keymap.set('n', '<space>fb', function()
+            require('telescope').extensions.file_browser.file_browser({
+                path = vim.fn.expand('%:p:h'),
+                select_buffer = true,
+                hidden = true,
+                respect_gitignore = false,
+                git_status = false,
+            })
+        end)
         vim.keymap.set('n', '<leader>fw', ':Telescope grep_string<CR>')
-  
         vim.keymap.set('n', '<leader>pn', function()
           builtin.find_files { cwd = vim.fn.stdpath 'config' }
         end, { desc = 'Search Neovim Files'})
