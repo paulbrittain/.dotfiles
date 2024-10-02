@@ -4,6 +4,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim"
     },
+    lazy = true,
     config = function()
         require("harpoon"):setup()
     end,

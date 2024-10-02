@@ -2,6 +2,10 @@ return {
   "ellisonleao/carbon-now.nvim",
   lazy = true,
   cmd = "CarbonNow",
-  ---@param opts cn.ConfigSchema
-  opts = { theme = "synthwave-84", }
+  opts = {
+    options = {
+      titlebar = "",
+      theme = "synthwave-84"
+    },
+  }
 }

@@ -40,5 +40,7 @@ vim.g.mapleader = " "
 vim.cmd.filetype("on")
 vim.cmd.filetype("plugin on")
 
+vim.g.python3_host_prog = '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/bin/python3'
+
 -- Use all my plugins.
 return require('lazy').setup('plugins')
