@@ -47,93 +47,33 @@ return {
         dependencies = {
             "nvim-telescope/telescope.nvim",
             "nvim-lua/plenary.nvim",  -- required by Telescope
+            "paulbrittain/nvim-dap-go-mono.nvim",
         },
         config = function()
-            local services = {
-                { name = "workflow", port = 31000 },
-                { name = "report", port = 38000 },
-                { name = "billing", port = 32000 },
-                { name = "configuration", port = 44000 },
-                { name = "render", port = 34000 },
-            }
+            local dap_go_service_debug = require("nvim-dap-go-mono")
 
-            local function get_debug_config(service_name, port)
-                return {
-                    type = "go",
-                    name = service_name,
-                    request = "attach",
-                    mode = "remote",
-                    substitutePath = {
-                        {
-                            from = "${workspaceFolder}/services/" .. service_name:lower(),
-                            to = "git.helio.dev/helio/core/services/" .. service_name:lower(),
-                        },
-                    },
-                    port = port,
-                }
-            end
-
-
-            local dap_configurations = {}
-            for _, service in ipairs(services) do
-                table.insert(dap_configurations, get_debug_config(service.name, service.port))
-            end
+            dap_go_service_debug.setup({
+                services = {
+                    { name = "workflow", port = 31000 },
+                    { name = "report", port = 38000 },
+                    { name = "billing", port = 32000 },
+                    { name = "configuration", port = 44000 },
+                    { name = "render", port = 34000 },
+                },
+                substitution_path = "${workspaceFolder}/services/",
+                remote_path_prefix = "git.helio.dev/helio/core/services/"
+            })
 
             require("dap-go").setup({
-                dap_configurations = dap_configurations,
+                dap_configurations = dap_go_service_debug.generate_debug_dap_configurations(),
                 delve = {
-                    port = "${port}",  -- This will be replaced dynamically
+                    port = "${port}",
                 },
             })
 
-            local function debug_service(service_name)
-                for _, config in ipairs(dap_configurations) do
-                    if config.name:lower() == service_name:lower() then
-                        require("dap").run(config)
-                        return
-                    end
-                end
-                print("Service not found: " .. service_name)
-            end
+            -- just for fun, I included my own telescope picker
+            vim.keymap.set("n", "<leader>ds", dap_go_service_debug.debug_service_picker, { desc = "Debug Service Picker" })
 
-            local actions = require('telescope.actions')
-            local action_state = require('telescope.actions.state')
-            local pickers = require('telescope.pickers')
-            local finders = require('telescope.finders')
-            local config = require('telescope.config').values
-
-            local function debug_service_picker(opts)
-                opts = opts or {}
-                pickers.new(opts, {
-                    prompt_title = "Debug Service",
-                    finder = finders.new_table {
-                        results = services,
-                        entry_maker = function(entry)
-                            return {
-                                value = entry,
-                                display = entry.name .. " " .. "(Port: " .. entry.port .. ")",
-                                ordinal = entry.name,
-                            }
-                        end,
-                    },
-                    sorter = config.generic_sorter(opts),
-                     attach_mappings = function(prompt_bufnr, map)
-                         actions.select_default:replace(function()
-                             actions.close(prompt_bufnr)
-                             local selection = action_state.get_selected_entry()
-                             print("Selected service: " .. selection.value.name .. " on port " .. selection.value.port)
-                             debug_service(selection.value.name)
-                         end)
-                         return true
-                     end,
-                }):find()
-            end
-
-            -- Command to open the Telescope picker
-            vim.api.nvim_create_user_command("DebugServicePicker", debug_service_picker, {})
-
-            -- Optional: Add a keymap to open the picker
-            vim.keymap.set("n", "<leader>ds", debug_service_picker, { desc = "Debug Service Picker" })
         end,
-    }
+    },
 }
