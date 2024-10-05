@@ -1,1 +1,4 @@
-return { "olacin/telescope-cc.nvim" }
+return {
+    -- Telescope Conventional Commits
+    "olacin/telescope-cc.nvim"
+}

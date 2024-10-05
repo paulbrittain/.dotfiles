@@ -21,6 +21,14 @@ return {
         cmdline = {
             view = "cmdline"
         },
+        lsp = {
+            signature = {
+                enabled = false,
+            },
+            hover = {
+                enabled = false,
+            },
+        },
       })
     end,
     dependencies = {
