@@ -117,10 +117,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/paulbrittain/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/paulbrittain/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/paulbrittain/Documents/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/paulbrittain/Documents/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/paulbrittain/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/paulbrittain/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/paulbrittain/Documents/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/paulbrittain/Documents/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Golang configuration
 export GOPRIVATE=git.helio.dev
@@ -158,6 +158,8 @@ alias hcore='cd ~/Helio/core/'
 alias hargocd='cd ~/Helio/argocd/'
 alias hdeveloper='cd ~/Helio/Developer/'
 alias hterraform='cd ~/Helio/terraform/'
+alias dotfiles='cd ~/.dotfiles'
+alias k8s='nvim +"lua require(\"kubectl\").open()"'
 
 alias icat="kitten icat"
 
