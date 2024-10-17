@@ -3,8 +3,8 @@ local script_dir = vim.fn.expand('<sfile>:p:h')
 -- Add the current directory to the package path
 package.path = package.path .. ';' .. script_dir .. '/?.lua'
 
-require("./remap")
-require("./set")
+require("remap")
+require("set")
 
 -- General/Global LSP Configuration.
 local lsp = vim.lsp
@@ -42,7 +42,7 @@ vim.cmd.filetype("plugin on")
 
 vim.g.python3_host_prog = '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/bin/python3'
 
-vim.opt.runtimepath:append("~/Personal/plugin-name")
+--vim.opt.runtimepath:append("~/Personal/plugin-name")
 
 -- Use all my plugins.
 return require('lazy').setup('plugins')

@@ -2,35 +2,37 @@ local options = {
     guicursor = "",
     nu = true,
     relativenumber = true,
-    
+
     tabstop = 4,
     softtabstop = 4,
-    
+
     shiftwidth = 4,
     expandtab = true,
-    
+
     smartindent = true,
-    
+
     wrap = true,
-    
+
     swapfile = false,
     backup = false,
     undodir = os.getenv("HOME") .. "/.vim/undodir",
     undofile = true,
-    
-    hlsearch = false,
+
+    hlsearch = true,
     incsearch = true,
-    
+    ignorecase = true,
+    smartcase = true,
+
     termguicolors = true,
-    
+
     scrolloff = 8,
     signcolumn = "yes",
     isfname = vim.opt.isfname:append("@-@"),
-    
+
     updatetime = 50,
-    
+
     conceallevel = 1,
-    
+
     clipboard = 'unnamedplus',
 }
 
