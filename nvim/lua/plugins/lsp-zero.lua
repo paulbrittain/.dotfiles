@@ -97,13 +97,13 @@ return {
                             useLibraryCodeForTypes = true,
                             diagnosticMode = 'workspace',
                             extraPaths = {
-                                '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/lib/python3.11/site-packages'
+                                '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/lib/python3.11/site-packages/OpenImageIO'
                             }
                         }
                     }
                 },
                 before_init = function(_, config)
-                    config.settings.python.pythonPath = '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/bin/python3'
+                    config.settings.python.pythonPath = '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/bin/python3.11'
                 end,
             })
 

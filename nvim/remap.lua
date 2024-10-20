@@ -2,15 +2,16 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Half screen jumping
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next Search Result Centered" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous Search Result Centered" })
-vim.keymap.set("n", "*", "*zzzv", { desc = "" })
-vim.keymap.set("n", "#", "#zzzv", { desc = "" })
-vim.keymap.set("n", "g*", "g*zzzv", { desc = "" })
-vim.keymap.set("n", "g#", "g#zzzv", { desc = "" })
+vim.keymap.set("n", "*", "*zzzv", { desc = "Next Symbol Centered" })
+vim.keymap.set("n", "#", "#zzzv", { desc = "Previous Symbol Centered" })
+vim.keymap.set("n", "g*", "g*zzzv", { desc = "Next Symbol Search Centered" })
+vim.keymap.set("n", "g#", "g#zzzv", { desc = "Reverse Symbol Search Centered" })
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
