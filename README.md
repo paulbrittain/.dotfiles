@@ -1,5 +1,10 @@
 # Repository of all my dotfiles
 
-- Neovim
+Linux and MacOS compatible
+
+- neovim
 - tmux
-- Zsh
+- zsh
+- i3
+- shkd
+- yabai
