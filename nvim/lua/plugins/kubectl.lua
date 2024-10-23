@@ -2,7 +2,7 @@ return {
   {
     "ramilito/kubectl.nvim",
     lazy = true,
-    dir = "~/Personal/kubectl.nvim",
+    dir = "~/personal/kubectl.nvim",
     config = function()
       require("kubectl").setup({
       })

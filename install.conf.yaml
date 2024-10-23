@@ -9,9 +9,16 @@
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/nvim: nvim
-    ~/.config/yabai: yabai
-    ~/.config/skhd: skhd
     ~/.config/kitty: kitty
+    ~/.config/yabai:
+      if: '[ `uname` = Darwin ]'
+      path: yabai
+    ~/.config/skhd:
+      if: '[ `uname` = Darwin ]'
+      path: skhd
+    ~/.config/i3:
+        if: '[ `uname` = Linux ]'
+        path: i3
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]

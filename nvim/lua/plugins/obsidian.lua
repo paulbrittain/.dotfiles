@@ -1,3 +1,11 @@
+local function get_workspace_path()
+    if vim.fn.has('macunix') == 1 then
+        return "~/Obsidian/helio/"
+    else
+        return "/home/sabana/personal/notes"
+    end
+end
+
 return {
     "epwalsh/obsidian.nvim",
     version = "*",
@@ -9,7 +17,7 @@ return {
         workspaces = {
             {
                 name = "helio",
-                path = "~/Obsidian/helio/",
+                path = get_workspace_path(),
             },
         },
         daily_notes = {

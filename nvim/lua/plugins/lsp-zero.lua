@@ -1,3 +1,5 @@
+local is_mac = jit.os == "OSX"
+
 return {
     {
         'VonHeikemen/lsp-zero.nvim',
@@ -89,26 +91,29 @@ return {
                 },
             })
 
-            lsp_zero.configure('pyright', {
-                settings = {
-                    python = {
-                        analysis = {
-                            autoSearchPaths = true,
-                            useLibraryCodeForTypes = true,
-                            diagnosticMode = 'workspace',
-                            extraPaths = {
-                                '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/lib/python3.11/site-packages/OpenImageIO'
+            if is_mac then
+                lsp_zero.configure('pyright', {
+                    settings = {
+                        python = {
+                            analysis = {
+                                autoSearchPaths = true,
+                                useLibraryCodeForTypes = true,
+                                diagnosticMode = 'workspace',
+                                extraPaths = {
+                                    '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/lib/python3.11/site-packages/OpenImageIO'
+                                }
                             }
                         }
-                    }
-                },
-                before_init = function(_, config)
-                    config.settings.python.pythonPath = '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/bin/python3.11'
-                end,
-            })
+                    },
+                    before_init = function(_, config)
+                        config.settings.python.pythonPath = '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/bin/python3.11'
+                    end,
+                })
+            end
+
 
             require('mason-lspconfig').setup({
-                ensure_installed = {"gopls", "pyright"},
+                ensure_installed = {"gopls", "pyright", "delve"},
                 handlers = {
                     -- this first function is the "default handler"
                     -- it applies to every language server without a "custom handler"

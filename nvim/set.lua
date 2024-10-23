@@ -1,3 +1,5 @@
+local is_mac = jit.os == "OSX"
+
 local options = {
     guicursor = "",
     nu = true,
@@ -15,7 +17,8 @@ local options = {
 
     swapfile = false,
     backup = false,
-    undodir = os.getenv("HOME") .. "/.vim/undodir",
+
+    undodir = is_mac and os.getenv("home") .. "/.vim/undodir" or os.getenv("HOME") .. "/.vim/undodir",
     undofile = true,
 
     hlsearch = true,
@@ -40,9 +43,9 @@ for k, v in pairs(options) do
     vim.opt[k] = v
   end
 
---  Not sure where to save config like this. Keeping it here for now.
-vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = "Highlight when yanking text",
+--  not sure where to save config like this. keeping it here for now.
+vim.api.nvim_create_autocmd('textyankpost', {
+    desc = "highlight when yanking text",
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
     callback = function()
         vim.highlight.on_yank()
