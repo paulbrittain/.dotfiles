@@ -9,6 +9,7 @@
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/nvim: nvim
+    ~/.config/alacritty: alacritty
     ~/.config/kitty: kitty
     ~/.config/yabai:
       if: '[ `uname` = Darwin ]'
