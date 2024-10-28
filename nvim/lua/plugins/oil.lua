@@ -3,7 +3,7 @@ return {
       ---@module 'oil'
       ---@type oil.SetupOpts
       opts = {
-        vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+        vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Oil Open parent directory" })
       },
       -- Optional dependencies
       --dependencies = { { "echasnovski/mini.icons", opts = {} } },

@@ -10,14 +10,15 @@ return {
             vim.cmd [[let g:go_def_mapping_enabled = 0]]
 
             -- Key mappings for telescope
-            vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-            vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+            vim.keymap.set('n', '<leader><leader>', builtin.buffers, {desc = "Telescope buffer"})
+            vim.keymap.set('n', '<leader>pf', builtin.find_files, {desc = "Telescope find files"})
+            vim.keymap.set('n', '<C-p>', builtin.git_files, {desc = "Telescope git files"})
             vim.keymap.set('n', '<leader>ps', ':Telescope live_grep<CR>')
-            vim.keymap.set('n', '<leader>pp', builtin.current_buffer_fuzzy_find, {})
-            vim.keymap.set('n', '<leader>pc', builtin.commands, {})
-            vim.keymap.set('n', '<leader>ph', builtin.command_history, {})
-            vim.keymap.set('n', '<leader>po', builtin.oldfiles, {})
-            vim.keymap.set('n', '<leader>pr', ':Telescope resume<CR>')
+            vim.keymap.set('n', '<leader>pp', builtin.current_buffer_fuzzy_find, {desc = "Telescope file fzf"})
+            vim.keymap.set('n', '<leader>pc', builtin.commands, {desc = "Telescope commands"})
+            vim.keymap.set('n', '<leader>ph', builtin.command_history, {desc = "Telescope cmd hist"})
+            vim.keymap.set('n', '<leader>po', builtin.oldfiles, {desc = "Telescope old files"})
+            vim.keymap.set('n', '<leader>pr', ':Telescope resume<CR>', {desc = "Telescope resume"})
             vim.keymap.set('n', '<space>fb', function()
                 require('telescope').extensions.file_browser.file_browser({
                     path = vim.fn.expand('%:p:h'),
@@ -26,11 +27,11 @@ return {
                     respect_gitignore = false,
                     git_status = false,
                 })
-            end)
-            vim.keymap.set('n', '<leader>fw', ':Telescope grep_string<CR>')
+            end, {desc = "Telescope fb"})
+            vim.keymap.set('n', '<leader>fw', ':Telescope grep_string<CR>', {desc = "Telescope grep str"})
             vim.keymap.set('n', '<leader>pn', function()
                 builtin.find_files { cwd = vim.fn.stdpath 'config' }
-            end, { desc = 'Search Neovim Files'})
+            end, { desc = "Telescope Neovim Files"})
 
             -- Telescope setup
             require("telescope").setup {
