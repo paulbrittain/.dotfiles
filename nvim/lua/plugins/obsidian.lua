@@ -2,7 +2,7 @@ local function get_workspace_path()
     if vim.fn.has('macunix') == 1 then
         return "~/Obsidian/helio/"
     else
-        return "/home/sabana/personal/notes"
+        return "/home/sabana/personal/notes/helio"
     end
 end
 
