@@ -228,3 +228,8 @@ mode "$mode_system" {
 }
 
 bindsym $mod+Delete mode "$mode_system"
+
+# Remove top border
+default_border pixel 1
+default_floating_border pixel 1
+for_window [class="^.*"] border pixel 1
