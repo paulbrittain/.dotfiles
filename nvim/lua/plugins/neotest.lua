@@ -12,11 +12,11 @@ return {
         config = function()
             require("neotest").setup({
                 adapters = {
-                    require("neotest-golang"),
-                    -- require("neotest-python")({
-                    --   runner = "pytest",
-                    --   python = "/home/sabana/helio/core/myenv/bin/python"
-                    -- })
+                    -- require("neotest-golang"),
+                    require("neotest-python")({
+                      runner = "pytest",
+                      python = "/home/sabana/helio/core/myenv/bin/python"
+                    })
                 },
             })
         end,

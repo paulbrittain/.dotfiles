@@ -211,6 +211,7 @@ bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle &
 bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% && $refresh_i3status
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% && $refresh_i3status
 
+# Screen lock
 set $Locker i3lock -c 000000 && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -228,6 +229,10 @@ mode "$mode_system" {
 }
 
 bindsym $mod+Delete mode "$mode_system"
+
+# Disable screen sleep
+exec xset s off
+exec xset -dpms
 
 # Remove top border
 default_border pixel 1
