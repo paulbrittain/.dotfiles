@@ -82,6 +82,8 @@ return {
                     { name = "billing", port = 32000 },
                     { name = "configuration", port = 44000 },
                     { name = "render", port = 34000 },
+                    { name = "storage", port = 43000 },
+                    { name = "event", port = 45000 },
                 },
                 substitution_path = "${workspaceFolder}/services/",
                 remote_path_prefix = "git.helio.dev/helio/core/services/"

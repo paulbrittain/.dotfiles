@@ -1,7 +1,7 @@
 return {
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
-        requires = {{"nvim-lua/plenary.nvim"}, {"nvim-telescope/telescope-file-browser.nvim"}},
+        requires = {{"nvim-lua/plenary.nvim"}, {"nvim-telescope/telescope-file-browser.nvim"}, {"nvim-telescope/telescope-fzf-native.nvim"}},
         config = function()
             local builtin = require('telescope.builtin')
             local actions = require('telescope.actions')
@@ -35,6 +35,9 @@ return {
 
             -- Telescope setup
             require("telescope").setup {
+                extensions = {
+                    fzf = {}
+                },
                 defaults = {
                     layout_strategy = 'vertical',
                     layout_config = {
@@ -59,6 +62,7 @@ return {
                         },
                     },
                 },
+                require('telescope').load_extension('fzf')
             }
         end,
     },
