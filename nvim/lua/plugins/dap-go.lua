@@ -55,9 +55,10 @@ return {
           config = function()
             local path = require("mason-registry").get_package("debugpy"):get_install_path()
             require("dap-python").setup(path .. "/venv/bin/python")
+            require('dap.ext.vscode').load_launchjs()
           end,
         },
-      },
+    },
   {
     "linux-cultist/venv-selector.nvim",
     cmd = "VenvSelect",
