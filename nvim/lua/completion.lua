@@ -1,4 +1,4 @@
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.completeopt = { "menu", "menuone", "noinsert" }
 vim.opt.shortmess:append "c"
 
 local lspkind = require "lspkind"
@@ -12,17 +12,14 @@ cmp.setup {
     { name = "cody" },
     { name = "path" },
     { name = "buffer" },
+    { name = 'nvim_lsp_signature_help' },
   },
   mapping = {
     ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
     ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-    ["<C-y>"] = cmp.mapping(
-      cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Insert,
-        select = true,
-      },
-      { "i", "c" }
-    ),
+    ['<CR>'] = cmp.mapping.confirm(),
+    },
+    preselect = cmp.PreselectMode.Item,
   },
 
   -- Enable luasnip to handle snippet expansion for nvim-cmp

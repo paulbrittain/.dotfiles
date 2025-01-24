@@ -26,11 +26,16 @@ return {
             cmp.setup({
                 sources = {
                     {name = 'nvim_lsp'},
+                    { name = 'nvim_lsp_signature_help' },
+                },
+                completion = {
+                    completeopt = 'menu,menuone,noinsert'
                 },
                 mapping = cmp.mapping.preset.insert({
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
                 }),
                 snippet = {
                     expand = function(args)
@@ -47,6 +52,8 @@ return {
         cmd = {'LspInfo', 'LspInstall', 'LspStart'},
         event = {'BufReadPre', 'BufNewFile'},
         dependencies = {
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lsp-signature-help'},
             {'hrsh7th/cmp-nvim-lsp'},
             {'williamboman/mason.nvim'},
             {'williamboman/mason-lspconfig.nvim'},
@@ -98,15 +105,18 @@ return {
                             analysis = {
                                 autoSearchPaths = true,
                                 useLibraryCodeForTypes = true,
+                                typeCheckingMode = "basic",
                                 diagnosticMode = 'workspace',
                                 extraPaths = {
-                                    '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/lib/python3.11/site-packages/OpenImageIO'
+                                    -- '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/lib/python3.11/site-packages/OpenImageIO'
+                                    'home/sabana/helio/native-plugins/helio_submitter/max/pymxs.py'
                                 }
                             }
                         }
                     },
                     before_init = function(_, config)
-                        config.settings.python.pythonPath = '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/bin/python3.11'
+                        -- config.settings.python.pythonPath = '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/bin/python3.11'
+                        config.settings.python.pythonPath = '/home/sabana/helio/native-plugins/myenv/bin/python3.11'
                     end,
                 })
             end

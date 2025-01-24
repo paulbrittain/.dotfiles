@@ -124,6 +124,7 @@ fi
 
 # Aliases
 alias k=kubectl
+alias ku=kubie
 alias kx=kubectx
 alias kns=kubens
 alias vim=nvim
@@ -158,7 +159,6 @@ case `uname` in
 
     # Ensure /opt/homebrew/bin is at the end
     export PATH="$PATH:/opt/homebrew/bin"
-    #export KUBECONFIG="/Users/paulbrittain/.kube/combinedconfig"
 
     export LD_LIBRARY_PATH="/Users/paulbrittain/Helio/core/workers/thumbnailprocessor/venv/lib/python3.11/site-packages/OpenImageIO/"
 
@@ -181,7 +181,7 @@ case `uname` in
     export PATH=$PATH:$GOPATH/bin
 
     #export KUBECONFIG="$HOME/.kube/config:$HOME/helio/core/core-kubeconfig:$HOME/.kube/az-eus-2:$HOME/.kube/az-neu-1:$HOME/.kube/azure-eu-v3:$HOME/.kube/azure-eu-v6"
-    export KUBECONFIG="$HOME/.kube/combined-kube-config"
+    #export KUBECONFIG="$HOME/.kube/combined-kube-config"
 
     export LD_LIBRARY_PATH="~/helio/core/workers/thumbnailprocessor/venv/lib/python3.11/site-packages/OpenImageIO/"
 
