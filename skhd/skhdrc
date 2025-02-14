@@ -1,3 +1,6 @@
+# Use CTRL + w to delete the previous word in a sentence, system-wide
+ctrl - w : yabai -m window --key "option - delete"
+
 # Changing window focus
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
