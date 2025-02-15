@@ -1,3 +1,6 @@
+HISTSIZE=10000
+SAVEHIST=10000
+
 case `uname` in
   Darwin)
     # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -190,6 +193,7 @@ case `uname` in
     alias hargocd='cd ~/helio/argocd/'
     alias hdeveloper='cd ~/helio/developer/'
     alias hterraform='cd ~/helio/terraform/'
+    alias native='cd ~/helio/native-plugins/'
 
 esac
 
@@ -198,6 +202,8 @@ alias k8s='nvim +"lua require(\"kubectl\").open()"'
 
 alias icat="kitten icat"
 
+# fzf
+source <(fzf --zsh)
 alias fzf="fzf --preview 'bat --color=always {}'"
 
 case `uname` in
