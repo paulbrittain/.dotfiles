@@ -1,9 +1,9 @@
 local is_mac = jit.os == "OSX"
 
 local options = {
-    guicursor = "",
     nu = true,
     relativenumber = true,
+    cursorline = true,
 
     tabstop = 4,
     softtabstop = 4,
