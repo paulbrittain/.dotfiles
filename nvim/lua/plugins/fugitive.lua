@@ -43,7 +43,7 @@ return {
 
                 -- Rebase always
                 vim.keymap.set("n", "<leader>P", function()
-                    vim.cmd.Git({'pull', '--rebase'})
+                    vim.cmd.Git('pull --rebase')
                 end, vim.tbl_extend("force", opts, { desc = "Git pull rebase" }))
 
                 -- Set up the branch push and tracking

@@ -1,4 +1,5 @@
-local is_mac = jit.os == "OSX"
+local home = vim.loop.os_homedir() -- More reliable than os.getenv("HOME")
+local undodir_path = home and (home .. "/.vim/undodir") or nil
 
 local options = {
     nu = true,
@@ -18,7 +19,7 @@ local options = {
     swapfile = false,
     backup = false,
 
-    undodir = is_mac and os.getenv("home") .. "/.vim/undodir" or os.getenv("HOME") .. "/.vim/undodir",
+    undodir = undodir_path,
     undofile = true,
 
     hlsearch = true,
