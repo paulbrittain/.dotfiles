@@ -48,6 +48,9 @@ return {
 
                 -- Set up the branch push and tracking
                 vim.keymap.set("n", "<leader>t", ":Git push -u origin ", vim.tbl_extend("force", opts, { desc = "Git push origin" }))
+
+                vim.keymap.set("n", "gh", "<cmd>diffget //2<CR>")
+                vim.keymap.set("n", "gl", "<cmd>diffget //3<CR>")
             end,
         })
       end,

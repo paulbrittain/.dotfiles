@@ -28,6 +28,7 @@ return {
 
             local capabilities = blink.get_lsp_capabilities()
 
+
             -- Setup servers with custom configurations
             require('mason-lspconfig').setup_handlers({
                 function(server_name)
@@ -36,35 +37,6 @@ return {
                         capabilities = capabilities
                     })
                 end,
-                
-                pyright = function()
-                    local python_path = is_mac 
-                        and '/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/bin/python3.11'
-                        or '/home/sabana/helio/native-plugins/myenv/bin/python3.11'
-                    
-                    local extra_paths = is_mac 
-                        and {'/Users/paulbrittain/.pyenv/versions/thumbnailprocessor-env/lib/python3.11/site-packages/OpenImageIO'}
-                        or {'home/sabana/helio/native-plugins/helio_submitter/max/pymxs.py'}
-
-                    lspconfig.pyright.setup({
-                        on_attach = lsp_attach,
-                        capabilities = capabilities,
-                        settings = {
-                            python = {
-                                analysis = {
-                                    autoSearchPaths = true,
-                                    useLibraryCodeForTypes = true,
-                                    typeCheckingMode = "basic",
-                                    diagnosticMode = 'workspace',
-                                    extraPaths = extra_paths
-                                }
-                            }
-                        },
-                        before_init = function(_, config)
-                            config.settings.python.pythonPath = python_path
-                        end,
-                    })
-                end
             })
         end
     }
