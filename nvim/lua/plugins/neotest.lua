@@ -13,17 +13,12 @@ return {
         config = function()
             require("neotest").setup({
                 adapters = {
-                    -- require("neotest-golang"),
+                    require("neotest-golang"),
                     require("neotest-python")({
-                      runner = "pytest",
-                      -- python = "/home/sabana/personal/algorithms/python/myenv/bin/python" -- "/home/sabana/helio/core/myenv/bin/python"
-                      -- python = "/home/sabana/personal/algorithms/python/myenv/bin/python" -- "/home/sabana/helio/core/myenv/bin/python"
-                      python = "/home/sabana/helio/native-plugins/myenv/bin/python", -- "/home/sabana/helio/core/myenv/bin/python"
-                      cwd = "home/sabana/helio/native-plugins",
-                      args = { "--no-cov" },
-                      dap = { justMyCode = true }
+                        runner = "pytest",
+                        args = { "--no-cov", "--log-level", "DEBUG" },
                     })
-                },
+                }
             })
             end,
         keys = {
