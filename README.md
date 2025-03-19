@@ -1,6 +1,6 @@
-# Repository of all my dotfiles
+# My dotfiles
 
-Linux and MacOS compatible
+Linux and MacOS compatible (mostly)
 
 - neovim
 - tmux
@@ -8,3 +8,4 @@ Linux and MacOS compatible
 - i3
 - shkd
 - yabai
+- alacritty
