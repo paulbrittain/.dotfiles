@@ -17,6 +17,7 @@ return {
             vim.keymap.set('n', '<leader>pc', builtin.commands, {desc = "Telescope commands"})
             vim.keymap.set('n', '<leader>ph', builtin.command_history, {desc = "Telescope cmd hist"})
             vim.keymap.set('n', '<leader>po', builtin.oldfiles, {desc = "Telescope old files"})
+            vim.keymap.set('n', '<leader>pd', builtin.man_pages, {desc = "Telescope documentation"})
             vim.keymap.set('n', '<leader>pr', ':Telescope resume<CR>', {desc = "Telescope resume"})
             vim.keymap.set('n', '<space>fb', function()
                 require('telescope').extensions.file_browser.file_browser({
