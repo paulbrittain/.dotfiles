@@ -25,7 +25,7 @@ return {
                     { id = "console", size = 0.5 },
                 },
                 position = "bottom",
-                size = 12 -- Increased from 10 to 20
+                size = 20 -- Increased from 10 to 20
             }
         }
     })
