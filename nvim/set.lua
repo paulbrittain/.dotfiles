@@ -6,6 +6,8 @@ local options = {
     relativenumber = true,
     cursorline = true,
 
+    splitright = true,
+
     tabstop = 4,
     softtabstop = 4,
 
