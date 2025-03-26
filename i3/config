@@ -160,8 +160,12 @@ bar {
         status_command i3status
 }
 
+# Not-in-use left-side vertical monitor config. --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate right \
+# HDMI-1 gets workspaces 8,9
+# workspace 8 output HDMI-1
+# workspace 9 output HDMI-1
+
 exec --no-startup-id xrandr \
-  --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate right \
   --output DP-1 --primary --mode 3840x1600 --pos 1080x0 \
   --output DP-2 --mode 1920x1080 --pos 4920x0
 
@@ -175,10 +179,8 @@ workspace 5 output DP-1
 # DP-2 gets workspaces 6,7
 workspace 6 output DP-2
 workspace 7 output DP-2
-
-# HDMI-1 gets workspaces 8,9
-workspace 8 output HDMI-1
-workspace 9 output HDMI-1
+workspace 8 output DP-2
+workspace 9 output DP-2
 
 exec --no-startup-id xbanish
 
