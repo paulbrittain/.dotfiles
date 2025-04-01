@@ -10,12 +10,9 @@
     ~/.zshrc: zshrc
     ~/.config/nvim: nvim
     ~/.config/alacritty: alacritty
-    ~/.config/yabai:
+    ~/.aerospace.toml:
       if: '[ `uname` = Darwin ]'
-      path: yabai
-    ~/.config/skhd:
-      if: '[ `uname` = Darwin ]'
-      path: skhd
+      path: .aerospace.toml
     ~/.config/i3:
         if: '[ `uname` = Linux ]'
         path: i3
