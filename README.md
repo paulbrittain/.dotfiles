@@ -5,7 +5,6 @@ Linux and MacOS compatible (mostly)
 - neovim
 - tmux
 - zsh
-- i3
-- shkd
-- yabai
+- i3 (Linux)
+- aerospace (MacOS)
 - alacritty
