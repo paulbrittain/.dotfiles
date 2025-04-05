@@ -49,7 +49,7 @@ alias k=kubectl
 alias ku=kubie
 alias kx=kubectx
 alias kns=kubens
-alias vim=nvim
+alias vim="$(command -v nvim)"
 alias marmot=/Users/paulbrittain/Personal/bluemarmot/main
 
 export NVM_DIR=~/.nvm
