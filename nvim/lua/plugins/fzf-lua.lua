@@ -19,6 +19,7 @@ return {
         vim.keymap.set('n', '<leader>ph', fzf.command_history, {desc = "FzfLua cmd hist"})
         vim.keymap.set('n', '<leader>po', fzf.oldfiles, {desc = "FzfLua old files"})
         vim.keymap.set('n', '<leader>pr', fzf.resume, {desc = "FzfLua resume"})
+        vim.keymap.set('n', '<leader>gc', fzf.git_commits, {desc = "Git commits"})
         vim.keymap.set('n', '<leader>pn', function()
         fzf.files { cwd = vim.fn.stdpath 'config' }
         end, { desc = "FzfLua Neovim Files"})
