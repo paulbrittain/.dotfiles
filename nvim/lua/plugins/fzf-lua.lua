@@ -1,16 +1,16 @@
 return {
-  "ibhagwan/fzf-lua",
-  opts = {},
-  config = function()
-      require('fzf-lua').setup({
-          defaults = {
-              git_icons = false,
-              file_icons = false,
-              color_icons = false
-          },
-      })
+    "ibhagwan/fzf-lua",
+    opts = {},
+    config = function()
+        require('fzf-lua').setup({
+            defaults = {
+                git_icons = false,
+                file_icons = false,
+                color_icons = false
+            },
+        })
 
-      local fzf = require("fzf-lua")
+        local fzf = require("fzf-lua")
 
         -- Key mappings for FzfLua
         vim.keymap.set('n', '<leader>pf', fzf.files, {desc = "FzfLua find files"})
@@ -21,24 +21,24 @@ return {
         vim.keymap.set('n', '<leader>pr', fzf.resume, {desc = "FzfLua resume"})
         vim.keymap.set('n', '<leader>gc', fzf.git_commits, {desc = "Git commits"})
         vim.keymap.set('n', '<leader>pn', function()
-        fzf.files { cwd = vim.fn.stdpath 'config' }
+            fzf.files { cwd = vim.fn.stdpath 'config' }
         end, { desc = "FzfLua Neovim Files"})
         vim.keymap.set('n', '<leader>fb', function()
-          fzf.files({
-            cwd = vim.fn.stdpath('config'),
-            previewer = "builtin", -- add this back
-            actions = {
-              ['default'] = require('fzf-lua.actions').file_edit,
-              ['backspace'] = require('fzf-lua.actions').file_up,
-            },
-            winopts = {
-              preview = {
-                layout = "horizontal",
-                vertical = "up:50%",
-              },
-            },
-          })
+            fzf.files({
+                cwd = vim.fn.stdpath('config'),
+                previewer = "builtin", -- add this back
+                actions = {
+                    ['default'] = require('fzf-lua.actions').file_edit,
+                    ['backspace'] = require('fzf-lua.actions').file_up,
+                },
+                winopts = {
+                    preview = {
+                        layout = "horizontal",
+                        vertical = "up:50%",
+                    },
+                },
+            })
         end, { desc = "FzfLua Simulated File Browser" })
 
-      end,
+    end,
 }

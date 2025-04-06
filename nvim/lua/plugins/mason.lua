@@ -6,7 +6,7 @@ return {
     lazy = false,
     config = function()
         local is_mac = jit.os == "OSX"
-        
+
         require('mason').setup({
             ui = {
                 icons = {

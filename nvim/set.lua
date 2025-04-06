@@ -44,7 +44,7 @@ local options = {
 
 for k, v in pairs(options) do
     vim.opt[k] = v
-  end
+end
 
 --  not sure where to save config like this. keeping it here for now.
 vim.api.nvim_create_autocmd('textyankpost', {

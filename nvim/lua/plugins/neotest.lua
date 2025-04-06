@@ -20,7 +20,7 @@ return {
                     })
                 }
             })
-            end,
+        end,
         keys = {
             {
                 "<leader>tt",

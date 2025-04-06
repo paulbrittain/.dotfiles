@@ -39,6 +39,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 
-vim.keymap.set("n", "<leader>h", ":bprev<CR>zz")
-vim.keymap.set("n", "<leader>l", ":bnext<CR>zz")
+    vim.keymap.set("n", "<leader>h", ":bprev<CR>zz")
+    vim.keymap.set("n", "<leader>l", ":bnext<CR>zz")
 end)
