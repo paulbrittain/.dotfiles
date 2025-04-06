@@ -8,6 +8,7 @@ return {
         config = function()
             local blink = require('blink.cmp')
             local lspconfig = require('lspconfig')
+            local fzf_lua = require('fzf-lua')
             local is_mac = vim.fn.has('mac') == 1
 
             local lsp_attach = function(client, bufnr)
@@ -23,7 +24,7 @@ return {
                 vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
                 vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
                 opts.desc = "Show LSP references"
-                vim.keymap.set("n", "gr", "<cmd>:Telescope lsp_references<CR>", opts)
+                vim.keymap.set("n", "gr", fzf_lua.lsp_references, opts)
             end
 
             local capabilities = blink.get_lsp_capabilities()

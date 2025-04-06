@@ -6,22 +6,19 @@ return {
             -- Key mappings
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
         vim.keymap.set("n", "<leader>gb", function()
-            require('telescope.builtin').git_branches({
-                attach_mappings = function(_, map)
-                    map('i', '<CR>', function(prompt_bufnr)
-                        local selection = require('telescope.actions.state').get_selected_entry()
-                        require('telescope.actions').close(prompt_bufnr)
-                        -- If it's a remote branch, create a tracking branch
-                        if selection.name:match('^origin/') then
-                            vim.cmd('Git checkout --track ' .. selection.name)
-                        else
-                            vim.cmd('Git checkout ' .. selection.name)
-                        end
-                    end)
-                    return true
+          require("fzf-lua").git_branches({
+            actions = {
+              ['default'] = function(selected)
+                local branch = selected[1]
+                if branch:match("^origin/") then
+                  vim.cmd("Git checkout --track " .. branch)
+                else
+                  vim.cmd("Git checkout " .. branch)
                 end
-            })
-        end)
+              end,
+            }
+          })
+        end, { desc = "FzfLua git branches with checkout" })
 
         -- Autocmd group and commands
         local Sabana_Fugitive = vim.api.nvim_create_augroup("Sabana_Fugitive", {})

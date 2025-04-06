@@ -86,6 +86,7 @@ case `uname` in
     alias hargocd='cd ~/Helio/argocd/'
     alias hdeveloper='cd ~/Helio/Developer/'
     alias hterraform='cd ~/Helio/terraform/'
+    alias hnative='cd ~/Helio/native-plugins/'
   ;;
   Linux)
     # The next line updates PATH for the Google Cloud SDK.
@@ -105,7 +106,7 @@ case `uname` in
     alias hargocd='cd ~/helio/argocd/'
     alias hdeveloper='cd ~/helio/developer/'
     alias hterraform='cd ~/helio/terraform/'
-    alias native='cd ~/helio/native-plugins/'
+    alias hnative='cd ~/helio/native-plugins/'
 
 esac
 
