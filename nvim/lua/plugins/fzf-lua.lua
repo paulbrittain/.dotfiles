@@ -23,22 +23,5 @@ return {
         vim.keymap.set('n', '<leader>pn', function()
             fzf.files { cwd = vim.fn.stdpath 'config' }
         end, { desc = "FzfLua Neovim Files"})
-        vim.keymap.set('n', '<leader>fb', function()
-            fzf.files({
-                cwd = vim.fn.stdpath('config'),
-                previewer = "builtin", -- add this back
-                actions = {
-                    ['default'] = require('fzf-lua.actions').file_edit,
-                    ['backspace'] = require('fzf-lua.actions').file_up,
-                },
-                winopts = {
-                    preview = {
-                        layout = "horizontal",
-                        vertical = "up:50%",
-                    },
-                },
-            })
-        end, { desc = "FzfLua Simulated File Browser" })
-
     end,
 }
