@@ -111,7 +111,7 @@ aur_packages=(
   nvm
   kubectx
   kubens
-  nerd-fonts
+  ttf-meslo-nerd
 )
 
 for pkg in "${aur_packages[@]}"; do
