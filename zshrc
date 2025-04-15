@@ -29,9 +29,10 @@ set -o vi
 bindkey "^R" history-incremental-search-backward
 
 # --- Initialization ---
-zstyle ':completion:*' rehash true
-ZSH_COMPDUMP=${ZSH_COMPDUMP:-~/.zcompdump}
-autoload -Uz compinit && compinit -d "$ZSH_COMPDUMP"
+if [[ -z $ZSH_COMPDUMP ]]; then
+  autoload -Uz compinit
+  compinit
+fi
 
 # --- Plugin: Completions & Suggestions ---
 fpath=(~/.zsh/zsh-completions $fpath)
