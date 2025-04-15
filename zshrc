@@ -1,5 +1,5 @@
 # --- History Configuration ---
-HISTSIZE=10000
+HISTSIZE=20000
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
 HISTDUPE=erase
