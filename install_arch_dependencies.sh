@@ -71,41 +71,84 @@ msg "${BLUE}[*] Updating Arch repositories...${NOFORMAT}"
 sudo pacman -Sy
 
 msg "${BLUE}[*] Installing base packages via pacman...${NOFORMAT}"
-sudo pacman -S --noconfirm \
-  base-devel \
-  zsh \
-  fzf \
-  bat \
-  direnv \
-  kubectl \
-  zsh-syntax-highlighting \
-  git \
-  python \
+base_packages=(
+  base-devel
+  zsh
+  fzf
+  bat
+  direnv
+  kubectl
+  zsh-syntax-highlighting
+  git
+  python
   alacritty
+)
+
+for pkg in "${base_packages[@]}"; do
+  if ! pacman -Qi "$pkg" &>/dev/null; then
+    sudo pacman -S --noconfirm "$pkg"
+  else
+    msg "${YELLOW}[!] Skipping: $pkg already installed${NOFORMAT}"
+  fi
+done
 
 msg "${BLUE}[*] Cloning and building Neovim...${NOFORMAT}"
-git clone https://github.com/neovim/neovim.git "$HOME/git/neovim"
-cd "$HOME/git/neovim"
-make CMAKE_BUILD_TYPE=RelWithDebInfo
-sudo make install
-cd "$HOME"
-
-msg "${BLUE}[*] Installing AUR packages via yay...${NOFORMAT}"
-yay -S --noconfirm \
-  zsh-theme-powerlevel10k \
-  pyenv \
-  nvm \
-  kubectx \
-  kubens \
-  nerd-fonts-meslo
-
-msg "${BLUE}[*] Installing Oh My Zsh...${NOFORMAT}"
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+if ! command -v nvim &>/dev/null && [ ! -d "$HOME/git/neovim/.git" ]; then
+  msg "${BLUE}[*] Cloning and building Neovim...${NOFORMAT}"
+  git clone https://github.com/neovim/neovim.git "$HOME/git/neovim"
+  cd "$HOME/git/neovim"
+  make CMAKE_BUILD_TYPE=RelWithDebInfo
+  sudo make install
+  cd "$HOME"
+else
+  msg "${YELLOW}[!] Skipping: Neovim already cloned and built${NOFORMAT}"
 fi
 
+msg "${BLUE}[*] Installing AUR packages via yay...${NOFORMAT}"
+aur_packages=(
+  zsh-theme-powerlevel10k
+  pyenv
+  nvm
+  kubectx
+  kubens
+  nerd-fonts
+)
+
+for pkg in "${aur_packages[@]}"; do
+  if ! pacman -Qi "$pkg" &>/dev/null; then
+    yay -S --noconfirm "$pkg"
+  else
+    msg "${YELLOW}[!] Skipping: $pkg already installed${NOFORMAT}"
+  fi
+done
+
+msg "${BLUE}[*] Installing Zsh Tools...${NOFORMAT}"
+declare -A repos=(
+  ["~/.zsh/zsh-autosuggestions"]="https://github.com/zsh-users/zsh-autosuggestions"
+  ["~/.zsh/zsh-completions"]="https://github.com/zsh-users/zsh-completions"
+  ["~/powerlevel10k"]="https://github.com/romkatv/powerlevel10k.git"
+  ["~/.zsh/zsh-defer"]="https://github.com/romkatv/zsh-defer"
+)
+
+for dir in "${!repos[@]}"; do
+  eval dir_expanded="$dir"
+  if [ ! -d "$dir_expanded/.git" ]; then
+    git clone --depth 1 "${repos[$dir]}" "$dir_expanded"
+  else
+    msg "${YELLOW}[!] Skipping: $dir already exists${NOFORMAT}"
+  fi
+done
+
 msg "${BLUE}[*] Setting Zsh as default shell...${NOFORMAT}"
-chsh -s "$(which zsh)"
+current_shell=$(getent passwd "$USER" | cut -d: -f7)
+zsh_path=$(command -v zsh)
+
+if [ "$current_shell" != "$zsh_path" ]; then
+  msg "${BLUE}[*] Setting Zsh as default shell...${NOFORMAT}"
+  chsh -s "$zsh_path"
+else
+  msg "${YELLOW}[!] Skipping: Zsh already set as default shell${NOFORMAT}"
+fi
 
 msg "${BLUE}[*] All dependencies and tools installed. Manual steps:${NOFORMAT}"
 

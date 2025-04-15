@@ -113,6 +113,7 @@ alias kns=kubens
 alias vim="$(command -v nvim)"
 alias k8s='nvim +"lua require(\"kubectl\").open()"'
 alias cd='z'
+alias ls='ls --color=auto'
 
 # --- fzf Integration ---
 source <(fzf --zsh)
