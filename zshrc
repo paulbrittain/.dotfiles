@@ -30,7 +30,8 @@ bindkey "^R" history-incremental-search-backward
 
 # --- Initialization ---
 zstyle ':completion:*' rehash true
-autoload -U compinit && compinit
+ZSH_COMPDUMP=${ZSH_COMPDUMP:-~/.zcompdump}
+autoload -Uz compinit && compinit -d "$ZSH_COMPDUMP"
 
 # --- Plugin: Completions & Suggestions ---
 fpath=(~/.zsh/zsh-completions $fpath)
@@ -43,24 +44,24 @@ bindkey '^ ' autosuggest-accept
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 fpath=(~/google-cloud-sdk/completion/zsh $fpath)
 
-# --- Python / Pyenv ---
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
+# --- Load zsh-defer (required for lazy loading) ---
+if [[ -f ~/.zsh/zsh-defer/zsh-defer.plugin.zsh ]]; then
+  source ~/.zsh/zsh-defer/zsh-defer.plugin.zsh
 fi
 
-# --- Node Version Manager (nvm) ---
-export NVM_DIR=~/.nvm
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+# --- Lazy Loaded Tools ---
+zsh-defer 'export PYENV_ROOT="$HOME/.pyenv"; export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"'
+zsh-defer '[ -x "$(command -v pyenv)" ] && eval "$(pyenv init --path)"; eval "$(pyenv init -)"; eval "$(pyenv virtualenv-init -)"'
 
-# --- Other Hooks & Tools ---
-eval "$(direnv hook zsh)"
-source <(kubectl completion zsh)
+zsh-defer 'export NVM_DIR="$HOME/.nvm"'
+zsh-defer '[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"'
+zsh-defer '[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"'
+
+zsh-defer 'eval "$(direnv hook zsh)"'
+zsh-defer 'source <(kubectl completion zsh)'
+
+
+# --- Zoxide Better CD ---
 eval "$(zoxide init zsh)"
 
 # --- Platform-Specific Configuration ---
