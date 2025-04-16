@@ -93,7 +93,6 @@ for pkg in "${base_packages[@]}"; do
   fi
 done
 
-msg "${BLUE}[*] Cloning and building Neovim...${NOFORMAT}"
 if ! command -v nvim &>/dev/null && [ ! -d "$HOME/git/neovim/.git" ]; then
   msg "${BLUE}[*] Cloning and building Neovim...${NOFORMAT}"
   git clone https://github.com/neovim/neovim.git "$HOME/git/neovim"
