@@ -82,6 +82,7 @@ base_packages=(
   git
   python
   alacritty
+  zoxide
 )
 
 for pkg in "${base_packages[@]}"; do
