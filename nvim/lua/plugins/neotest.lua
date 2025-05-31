@@ -13,7 +13,7 @@ return {
         config = function()
             require("neotest").setup({
                 adapters = {
-                    -- require("neotest-golang"),
+                    require("neotest-golang"),
                     require("neotest-python")({
                         runner = "pytest",
                         args = { "--no-cov", "--log-level", "DEBUG" },

@@ -10,7 +10,8 @@ return {
                         ['default'] = function(selected)
                             local branch = selected[1]
                             if branch:match("^origin/") then
-                                vim.cmd("Git checkout --track " .. branch)
+                                local local_branch = branch:gsub("^origin/", "")
+                                vim.cmd("Git checkout -b " .. local_branch .. " --track " .. branch)
                             else
                                 vim.cmd("Git checkout " .. branch)
                             end

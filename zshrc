@@ -108,8 +108,8 @@ esac
 # --- Aliases ---
 alias k=kubectl
 alias ku=kubie
-alias kx=kubectx
-alias kns=kubens
+alias kx='ku ctx'
+alias kns='ku ns'
 alias vim="$(command -v nvim)"
 alias k8s='nvim +"lua require(\"kubectl\").open()"'
 alias cd='z'
