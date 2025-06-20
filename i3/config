@@ -19,6 +19,12 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# Resolving post-login aesthetic issues:
+# Set the background black from problem where last login screen frame was peristed.
+exec --no-startup-id xsetroot -solid black
+# Set the cursor correctly from problem where cursor was 'busy'.
+exec --no-startup-id xsetroot -cursor_name left_ptr
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status

@@ -42,3 +42,9 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.keymap.set("n", "<leader>h", ":bprev<CR>zz")
     vim.keymap.set("n", "<leader>l", ":bnext<CR>zz")
 end)
+
+vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
+vim.keymap.set("n", "+", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
+vim.keymap.set("n", "<", "<cmd>horizontal resize +2<cr>") -- make the window bigger horizontally by pressing shift and =
+vim.keymap.set("n", ">", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
+
