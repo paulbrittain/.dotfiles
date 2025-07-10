@@ -32,12 +32,14 @@ return {
         vim.lsp.config("basedpyright", lsp_defaults, {
             settings = {
                 basedpyright = {
-                    autoSearchPaths = true,
-                    useLibraryCodeForTypes = true,
-                    typeCheckingMode = "basic",
-                    diagnosticMode = "workspace",
-                },
-            },
+                  analysis = {
+                    diagnosticMode = "openFilesOnly",
+                    inlayHints = {
+                      callArgumentNames = true
+                    }
+                  }
+                }
+              }
         })
 
         require("mason").setup()
