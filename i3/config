@@ -221,3 +221,7 @@ exec xset -dpms
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
+
+# Start dunst: A notification manager.
+# This fixes Slack and Discord from freezing when notifications fire.
+exec --no-startup-id dunst
