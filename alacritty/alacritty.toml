@@ -7,3 +7,13 @@ bold = { family = "MesloLGS Nerd Font Mono", style = "Bold" }
 italic = { family = "MesloLGS Nerd Font Mono", style = "Italic" }
 bold_italic = { family = "MesloLGS Nerd Font Mono", style = "Bold Italic" }
 size = 11
+
+[[keyboard.bindings]]
+key = "A"
+mods = "Alt"
+chars = "\u001ba"
+
+[[keyboard.bindings]]
+key = "Q"
+mods = "Alt"
+chars = "\u001bq"

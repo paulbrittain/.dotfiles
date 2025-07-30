@@ -10,6 +10,7 @@
     ~/.zshrc: zshrc
     ~/.config/nvim: nvim
     ~/.config/alacritty: alacritty
+    ~/.kube/kubie.yaml: kubie.yaml
     ~/.aerospace.toml:
       if: '[ `uname` = Darwin ]'
       path: .aerospace.toml
