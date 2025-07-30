@@ -2,15 +2,20 @@
 HISTSIZE=20000
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
-HISTDUPE=erase
 
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
+setopt HIST_IGNORE_SPACE        # ignore commands starting with space
+setopt HIST_IGNORE_ALL_DUPS     # no duplicate entries
+setopt HIST_SAVE_NO_DUPS        # don't save dupes to file
+setopt HIST_FIND_NO_DUPS        # don't show dupes in search
+setopt HIST_REDUCE_BLANKS       # strip excess whitespace
+setopt HIST_EXPIRE_DUPS_FIRST   # expire dupes before unique
+
+setopt APPEND_HISTORY           # append instead of overwrite
+setopt EXTENDED_HISTORY         # timestamp support
+
+# unset these to avoid issues
+unsetopt SHARE_HISTORY
+unsetopt INC_APPEND_HISTORY
 
 # --- Prompt (Powerlevel10k) ---
 case $(uname) in
@@ -25,13 +30,17 @@ esac
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # --- Shell Behavior ---
-set -o vi
+# set -o vi
 bindkey "^R" history-incremental-search-backward
 
 # --- Initialization ---
-if [[ -z $ZSH_COMPDUMP ]]; then
-  autoload -Uz compinit
-  compinit
+autoload -Uz compinit
+compinit
+
+if command -v kubectl &>/dev/null; then
+  source <(kubectl completion zsh)
+  alias k='kubectl'
+  compdef k=kubectl
 fi
 
 # --- Plugin: Completions & Suggestions ---
@@ -59,8 +68,6 @@ zsh-defer '[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"'
 zsh-defer '[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"'
 
 zsh-defer 'eval "$(direnv hook zsh)"'
-zsh-defer 'source <(kubectl completion zsh)'
-
 
 # --- Zoxide Better CD ---
 eval "$(zoxide init zsh)"
@@ -80,7 +87,7 @@ case $(uname) in
     export PATH="$PATH:$HOME/.nsccli/bin:/opt/homebrew/bin"
 
     # OpenImageIO Library
-    export LD_LIBRARY_PATH="$HOME/Helio/core/workers/thumbnailprocessor/venv/lib/python3.11/site-packages/OpenImageIO/"
+    export LD_LIBRARY_PATH="$HOME/helio/core/.venv/lib/python3.11/site-packages/OpenImageIO/"
 
     # Syntax Highlighting
     source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -101,12 +108,11 @@ case $(uname) in
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
     # OpenImageIO Library
-    export LD_LIBRARY_PATH="$HOME/helio/core/workers/thumbnailprocessor/venv/lib/python3.11/site-packages/OpenImageIO/"
+    #export LD_LIBRARY_PATH="$HOME/helio/core/workers/thumbnailprocessor/venv/lib/python3.11/site-packages/OpenImageIO/"
     ;;
 esac
 
 # --- Aliases ---
-alias k=kubectl
 alias ku=kubie
 alias kx='ku ctx'
 alias kns='ku ns'
