@@ -32,6 +32,7 @@ return {
         vim.lsp.config("basedpyright", lsp_defaults, {
             settings = {
                 basedpyright = {
+                  pythonVersion = "3.11",
                   analysis = {
                     diagnosticMode = "openFilesOnly",
                     inlayHints = {
