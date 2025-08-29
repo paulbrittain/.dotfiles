@@ -30,7 +30,7 @@ esac
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # --- Shell Behavior ---
-# set -o vi
+set -o vi
 bindkey "^R" history-incremental-search-backward
 
 # --- Initialization ---
