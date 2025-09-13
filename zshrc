@@ -9,6 +9,7 @@ setopt HIST_SAVE_NO_DUPS        # don't save dupes to file
 setopt HIST_FIND_NO_DUPS        # don't show dupes in search
 setopt HIST_REDUCE_BLANKS       # strip excess whitespace
 setopt HIST_EXPIRE_DUPS_FIRST   # expire dupes before unique
+setopt HIST_SAVE_BY_COPY        # atomic write, avoid clobbering
 
 setopt APPEND_HISTORY           # append instead of overwrite
 setopt EXTENDED_HISTORY         # timestamp support
@@ -49,6 +50,7 @@ fpath=(~/.zsh/zsh-completions $fpath)
 
 # Accept autosuggestion with Tab instead of Right Arrow
 bindkey '^ ' autosuggest-accept
+bindkey '^[[C' autosuggest-accept
 
 # --- Path Configuration ---
 export PATH=$HOME/bin:/usr/local/bin:$PATH
