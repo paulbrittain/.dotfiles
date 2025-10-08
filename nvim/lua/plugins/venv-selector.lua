@@ -1,7 +1,7 @@
 return {
     'linux-cultist/venv-selector.nvim',
     branch = "regexp",
-    dependencies = { 'neovim/nvim-lspconfig', 'ibhagwan/fzf-lua', 'mfussenegger/nvim-dap-python' },
+    dependencies = { 'neovim/nvim-lspconfig', 'ibhagwan/fzf-lua'},
     config = function()
         require('venv-selector').setup {
             settings = {

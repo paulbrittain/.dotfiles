@@ -44,4 +44,6 @@ vim.g.mapleader = " "
 vim.diagnostic.config({ jump = { float = true }})
 
 -- Use all my plugins.
-return require('lazy').setup('plugins')
+return require("lazy").setup("plugins", {
+  rocks = { enabled = false },  -- stop LuaRocks integration
+})

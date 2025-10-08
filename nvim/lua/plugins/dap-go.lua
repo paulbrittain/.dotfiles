@@ -2,6 +2,7 @@ return {
     "leoluz/nvim-dap-go",
     event = 'VeryLazy',
     dependencies = {
+        "mfussenegger/nvim-dap",
         "nvim-telescope/telescope.nvim",
         "nvim-lua/plenary.nvim",  -- required by Telescope
         "paulbrittain/nvim-dap-go-mono.nvim",
