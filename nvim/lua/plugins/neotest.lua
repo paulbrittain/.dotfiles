@@ -13,11 +13,11 @@ return {
         config = function()
             require("neotest").setup({
               adapters = {
-                require("neotest-python")({
-                    runner = "pytest",
-                    args = { "--log-level", "DEBUG" },
-                }),
-                require("neotest-go")
+                -- require("neotest-python")({
+                --     runner = "pytest",
+                --     args = { "--log-level", "DEBUG" },
+                -- }),
+                require("neotest-golang")
               },
             })
         end,

@@ -18,7 +18,7 @@ return {
             vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
             vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
             vim.keymap.set('n', '<leader>lrn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-            vim.keymap.set('n', '<leader>lca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+            vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
             vim.keymap.set("n", "gr", fzf_lua.lsp_references, opts)
         end
 
@@ -45,7 +45,7 @@ return {
 
         require("mason").setup()
         require("mason-lspconfig").setup {
-          ensure_installed = { "gopls", "bashls", "lua_ls", "basedpyright" },
+          ensure_installed = { "gopls", "bashls", "lua_ls", "basedpyright", "biome" },
           automatic_enable = true
         }
     end
