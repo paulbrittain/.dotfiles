@@ -3,6 +3,9 @@ HISTSIZE=20000
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
 
+# Editor
+export EDITOR=vim
+
 setopt HIST_IGNORE_SPACE        # ignore commands starting with space
 setopt HIST_IGNORE_ALL_DUPS     # no duplicate entries
 setopt HIST_SAVE_NO_DUPS        # don't save dupes to file
