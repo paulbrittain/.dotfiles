@@ -1,0 +1,9 @@
+-- return {
+--   dir = "/home/sabana/git/namaste.nvim",  -- Use your actual path
+--   name = "namaste.nvim",
+--   config = function()
+--     require("namaste").setup({
+--       meditation_url = "https://www.youtube.com/watch?v=vLhOGEnEedk",
+--     })
+--   end,
+-- }
