@@ -9,14 +9,12 @@
     ~/.zprofile: zprofile
     ~/.zshrc: zshrc
     ~/.config/nvim: nvim
-    ~/.config/alacritty: alacritty
-    ~/.kube/kubie.yaml: kubie.yaml
+    ~/.config/fish/config.fish:
+      path: config.fish
+      create: true
     ~/.aerospace.toml:
       if: '[ `uname` = Darwin ]'
       path: .aerospace.toml
-    ~/.config/i3:
-        if: '[ `uname` = Linux ]'
-        path: i3
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]

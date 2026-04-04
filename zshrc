@@ -14,12 +14,12 @@ setopt HIST_REDUCE_BLANKS       # strip excess whitespace
 setopt HIST_EXPIRE_DUPS_FIRST   # expire dupes before unique
 setopt HIST_SAVE_BY_COPY        # atomic write, avoid clobbering
 
-setopt APPEND_HISTORY           # append instead of overwrite
+setopt INC_APPEND_HISTORY_TIME  # write immediately, include elapsed time
 setopt EXTENDED_HISTORY         # timestamp support
-
-# unset these to avoid issues
 unsetopt SHARE_HISTORY
-unsetopt INC_APPEND_HISTORY
+unsetopt APPEND_HISTORY
+
+export HISTORY_IGNORE="(\&|[bf]g|c|clear|history|exit|q|pwd|* --help)"
 
 # --- Prompt (Powerlevel10k) ---
 case $(uname) in
@@ -112,6 +112,9 @@ case $(uname) in
     # Syntax Highlighting
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+    [[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
+
     # OpenImageIO Library
     #export LD_LIBRARY_PATH="$HOME/helio/core/workers/thumbnailprocessor/venv/lib/python3.11/site-packages/OpenImageIO/"
     ;;
@@ -134,6 +137,14 @@ alias vim="$(command -v nvim)"
 alias k8s='nvim +"lua require(\"kubectl\").open()"'
 alias cd='z'
 alias ls='ls --color=auto'
+
+# --- History Search ---
+if [[ $(uname) == "Linux" ]]; then
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+  bindkey -M vicmd 'k' history-substring-search-up
+  bindkey -M vicmd 'j' history-substring-search-down
+fi
 
 # --- fzf Integration ---
 source <(fzf --zsh)
