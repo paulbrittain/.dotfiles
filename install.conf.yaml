@@ -15,6 +15,9 @@
     ~/.aerospace.toml:
       if: '[ `uname` = Darwin ]'
       path: .aerospace.toml
+    ~/bin/claude-split:
+      path: tmux-bin/claude-split.sh
+      create: true
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
