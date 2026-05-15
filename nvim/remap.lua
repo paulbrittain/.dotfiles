@@ -36,12 +36,9 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-
-    vim.keymap.set("n", "<leader>h", ":bprev<CR>zz")
-    vim.keymap.set("n", "<leader>l", ":bnext<CR>zz")
-end)
+vim.keymap.set("n", "<leader><leader>", "<cmd>so<CR>")
+vim.keymap.set("n", "<leader>h", ":bprev<CR>zz")
+vim.keymap.set("n", "<leader>l", ":bnext<CR>zz")
 
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
 vim.keymap.set("n", "+", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically

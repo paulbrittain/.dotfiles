@@ -7,7 +7,6 @@ return {
         init = function()
             local parser_installed = {
                 "python",
-                "go",
                 "c",
                 "lua",
                 "vim",
@@ -15,6 +14,9 @@ return {
                 "query",
                 "markdown_inline",
                 "markdown",
+                "javascript",
+                "typescript",
+                "tsx",
             }
 
             vim.defer_fn(function() require("nvim-treesitter").install(parser_installed) end, 1000)

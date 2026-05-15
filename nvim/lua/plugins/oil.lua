@@ -2,10 +2,10 @@ return {
     'stevearc/oil.nvim',
     ---@module 'oil'
     ---@type oil.SetupOpts
-    opts = {
+    opts = {},
+    config = function(_, opts)
+        require('oil').setup(opts)
         vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Oil Open parent directory" })
-    },
-    -- Optional dependencies
+    end,
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 }

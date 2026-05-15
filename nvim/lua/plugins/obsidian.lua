@@ -1,13 +1,17 @@
 local function get_workspace_path_helio()
     if vim.fn.has('macunix') == 1 then
-        return "~/Obsidian/helio/"
+        return "/Users/paul/Library/Mobile Documents/iCloud~md~obsidian/Documents"
     else
         return "/home/sabana/personal/notes/helio"
     end
 end
 
 local function get_workspace_path_personal()
-    return "/home/sabana/personal/notes/personal"
+    if vim.fn.has('macunix') == 1 then
+        return vim.fn.expand("~/notes/personal")
+    else
+        return "/home/sabana/personal/notes/personal"
+    end
 end
 
 return {

@@ -3,12 +3,9 @@ return {
         "mfussenegger/nvim-dap",
         event = 'VeryLazy',
         dependencies = {
-            {
-                "mfussenegger/nvim-dap",
-                "nvim-neotest/nvim-nio",
-                "theHamsta/nvim-dap-virtual-text",
-                "rcarriga/nvim-dap-ui",
-            },
+            "nvim-neotest/nvim-nio",
+            "theHamsta/nvim-dap-virtual-text",
+            "rcarriga/nvim-dap-ui",
         },
         config = function()
             local dap, dapui = require("dap"), require("dapui")
@@ -27,8 +24,6 @@ return {
             end)
 
             vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
-
-            require('dap.ext.vscode').load_launchjs(nil, {})
 
             dap.listeners.after.event_initialized['dapui_config'] = dapui.open
             -- dap.listeners.before.event_terminated['dapui_config'] = dapui.close

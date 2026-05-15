@@ -1,4 +1,4 @@
-local home = vim.loop.os_homedir() -- More reliable than os.getenv("HOME")
+local home = vim.uv.os_homedir()
 local undodir_path = home and (home .. "/.vim/undodir") or nil
 
 local options = {
@@ -45,6 +45,17 @@ local options = {
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
+
+vim.filetype.add({ extension = { mjs = 'javascript', cjs = 'javascript' } })
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'json' },
+    callback = function()
+        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.shiftwidth = 2
+    end,
+})
 
 --  not sure where to save config like this. keeping it here for now.
 vim.api.nvim_create_autocmd('textyankpost', {
