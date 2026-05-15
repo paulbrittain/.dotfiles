@@ -55,6 +55,11 @@ fpath=(~/.zsh/zsh-completions $fpath)
 bindkey '^ ' autosuggest-accept
 bindkey '^[[C' autosuggest-accept
 
+# NVM
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # --- Path Configuration ---
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 fpath=(~/google-cloud-sdk/completion/zsh $fpath)
@@ -137,6 +142,7 @@ alias vim="$(command -v nvim)"
 alias k8s='nvim +"lua require(\"kubectl\").open()"'
 alias cd='z'
 alias ls='ls --color=auto'
+#alias claude='claude --bare'
 
 # --- History Search ---
 if [[ $(uname) == "Linux" ]]; then
@@ -153,3 +159,7 @@ alias fzf="fzf --preview 'bat --color=always {}'"
 # --- MAN Pages ---
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+source ~/.anthropic_env

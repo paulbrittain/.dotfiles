@@ -1,5 +1,7 @@
 # --- CachyOS defaults to be overridden below this line ---
-source /usr/share/cachyos-fish-config/cachyos-config.fish
+if test -f /usr/share/cachyos-fish-config/cachyos-config.fish
+    source /usr/share/cachyos-fish-config/cachyos-config.fish
+end
 
 # --- Editor ---
 set -x EDITOR nvim
@@ -65,3 +67,6 @@ alias fzf="fzf --preview 'bat --color=always {}'"
 # --- Man pages ---
 set -x MANPAGER 'nvim +Man!'
 set -x MANWIDTH 999
+zoxide init fish | source
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
