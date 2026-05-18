@@ -142,7 +142,6 @@ alias vim="$(command -v nvim)"
 alias k8s='nvim +"lua require(\"kubectl\").open()"'
 alias cd='z'
 alias ls='ls --color=auto'
-#alias claude='claude --bare'
 
 # --- History Search ---
 if [[ $(uname) == "Linux" ]]; then
@@ -163,3 +162,5 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 source ~/.anthropic_env
+
+. "$HOME/.local/bin/env"
