@@ -1,0 +1,198 @@
+# tmux-which-key config (symlinked to ~/.config/tmux/plugins/tmux-which-key/config.yaml).
+# Edit this file in the dotfiles repo; the plugin rebuilds init.tmux from it on tmux start.
+# Trigger: prefix + Space (or Ctrl+Space without prefix).
+command_alias_start_index: 200
+keybindings:
+  # root_table: C-Space
+  prefix_table: Space
+title:
+  style: align=centre,bold
+  prefix: tmux
+  prefix_style: fg=green,align=centre,bold
+position:
+  x: R
+  y: P
+custom_variables:
+  - name: log_info
+    value: '#[fg=green,italics] [info]#[default]#[italics]'
+macros:
+  - name: reload-config
+    commands:
+      - display "#{log_info} Loading config... "
+      - source-file $HOME/.tmux.conf
+      - display -p "\n\n... Press ENTER to continue"
+  - name: restart-pane
+    commands:
+      - display "#{log_info} Restarting pane"
+      - 'respawnp -k -c #{pane_current_path}'
+items:
+  # --- Custom bindings (mirror direct prefix keys) ---
+  - name: Split horizontal
+    key: '|'
+    command: 'splitw -h -c #{pane_current_path}'
+  - name: Split vertical
+    key: '-'
+    command: 'splitw -v -c #{pane_current_path}'
+  - name: Tiled layout
+    key: '='
+    command: select-layout tiled
+  - name: Toggle pane sync
+    key: a
+    command: setw synchronize-panes
+  - name: Kill pane
+    key: x
+    command: 'confirm -p "Kill pane #P? (y/n)" killp'
+  - name: DB creds split
+    key: g
+    command: display-popup -E "$HOME/bin/claude-split-pick"
+  - name: Reload config
+    key: r
+    macro: reload-config
+  - separator: true
+  - name: Run command
+    key: space
+    command: command-prompt
+  - name: Last window
+    key: tab
+    command: last-window
+  - name: Last pane
+    key: '`'
+    command: last-pane
+  - name: Copy mode
+    key: c
+    command: copy-mode
+  - separator: true
+  - name: +Windows
+    key: w
+    menu:
+      - name: Choose
+        key: w
+        command: choose-tree -Zw
+      - name: Previous
+        key: p
+        command: previous-window
+      - name: Next
+        key: n
+        command: next-window
+      - name: New
+        key: c
+        command: 'neww -c #{pane_current_path}'
+      - separator: true
+      - name: +Layout
+        key: l
+        menu:
+          - name: Next
+            key: l
+            command: nextl
+            transient: true
+          - name: Tiled
+            key: t
+            command: selectl tiled
+          - name: Horizontal
+            key: h
+            command: selectl even-horizontal
+          - name: Vertical
+            key: v
+            command: selectl even-vertical
+      - name: Rename
+        key: R
+        command: command-prompt -p "Rename window:" -I "#W" "renamew -- \"%%\""
+      - name: Kill
+        key: X
+        command: 'confirm -p "Kill window #W? (y/n)" killw'
+  - name: +Panes
+    key: p
+    menu:
+      - name: Left
+        key: h
+        command: selectp -L
+      - name: Down
+        key: j
+        command: selectp -D
+      - name: Up
+        key: k
+        command: selectp -U
+      - name: Right
+        key: l
+        command: selectp -R
+      - separator: true
+      - name: Zoom
+        key: z
+        command: resizep -Z
+      - name: +Resize
+        key: r
+        menu:
+          - name: Left
+            key: h
+            command: resizep -L 5
+            transient: true
+          - name: Down
+            key: j
+            command: resizep -D 5
+            transient: true
+          - name: Up
+            key: k
+            command: resizep -U 5
+            transient: true
+          - name: Right
+            key: l
+            command: resizep -R 5
+            transient: true
+      - name: Break to window
+        key: '!'
+        command: break-pane
+      - name: Respawn
+        key: R
+        macro: restart-pane
+      - name: Kill
+        key: X
+        command: 'confirm -p "Kill pane #P? (y/n)" killp'
+  - name: +Sessions
+    key: s
+    menu:
+      - name: Choose
+        key: s
+        command: choose-tree -Zs
+      - name: New
+        key: N
+        command: new
+      - name: Rename
+        key: r
+        command: command-prompt -p "Rename session:" -I "#S" "rename-session -- \"%%\""
+      - name: Detach
+        key: d
+        command: detach
+  - name: +Buffers
+    key: b
+    menu:
+      - name: Choose
+        key: b
+        command: choose-buffer -Z
+      - name: List
+        key: l
+        command: lsb
+      - name: Paste
+        key: p
+        command: pasteb
+  - name: +Plugins
+    key: P
+    menu:
+      - name: Install
+        key: i
+        command: run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/install_plugins
+      - name: Update
+        key: u
+        command: run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/update_plugins
+      - name: Clean
+        key: c
+        command: run-shell $TMUX_PLUGIN_MANAGER_PATH/tpm/bindings/clean_plugins
+  - separator: true
+  - name: Clock
+    key: T
+    command: clock-mode
+  - name: Show messages
+    key: '~'
+    command: show-messages
+  - name: +All keys
+    key: '?'
+    command: list-keys -N
