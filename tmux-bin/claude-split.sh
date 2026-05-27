@@ -3,6 +3,30 @@ set -euo pipefail
 
 CREDS_FILE="${CLAUDE_SPLIT_CREDS_FILE:-$HOME/.tmux-db-creds.json}"
 JQ="${JQ:-jq}"
+AGE="${AGE:-age}"
+AGE_KEY="${DB_CREDS_AGE_KEY:-$HOME/.ssh/id_ed25519}"
+
+# Decrypt an "age:<base64>" sentinel value using the SSH/age key.
+# Plaintext values (no age: prefix) are echoed unchanged.
+decrypt_value() {
+  local val="$1" conn="${2:-}"
+  if [[ "$val" != age:* ]]; then
+    printf '%s' "$val"
+    return 0
+  fi
+  if ! command -v "$AGE" &>/dev/null; then
+    echo "Error: age is required to decrypt '$conn' (brew install age)" >&2
+    return 1
+  fi
+  if [[ ! -f "$AGE_KEY" ]]; then
+    echo "Error: age key not found: $AGE_KEY (needed to decrypt '$conn')" >&2
+    return 1
+  fi
+  if ! printf '%s' "${val#age:}" | openssl base64 -d -A | "$AGE" -d -i "$AGE_KEY" 2>/dev/null; then
+    echo "Error: age decrypt failed for '$conn' -- is $AGE_KEY the right key?" >&2
+    return 1
+  fi
+}
 
 validate_args() {
   if [[ -z "${1:-}" ]]; then
@@ -41,7 +65,7 @@ extract_pg_vars() {
   PGHOST=$("$JQ" -r --arg k "$conn" '.[$k].host // empty' "$file")
   PGPORT=$("$JQ" -r --arg k "$conn" '.[$k].port // empty' "$file")
   PGUSER=$("$JQ" -r --arg k "$conn" '.[$k].user // empty' "$file")
-  PGPASSWORD=$("$JQ" -r --arg k "$conn" '.[$k].password // empty' "$file")
+  PGPASSWORD=$(decrypt_value "$("$JQ" -r --arg k "$conn" '.[$k].password // empty' "$file")" "$conn")
   PGDATABASE=$("$JQ" -r --arg k "$conn" '.[$k].database // empty' "$file")
   DATABASE_URL=$("$JQ" -r --arg k "$conn" '.[$k].url // empty' "$file")
 }

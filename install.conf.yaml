@@ -18,6 +18,12 @@
     ~/bin/claude-split:
       path: tmux-bin/claude-split.sh
       create: true
+    ~/bin/claude-split-pick:
+      path: tmux-bin/claude-split-pick.sh
+      create: true
+    ~/bin/db-creds-crypt:
+      path: tmux-bin/db-creds-crypt.sh
+      create: true
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]

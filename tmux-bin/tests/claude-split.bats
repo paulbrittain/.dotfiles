@@ -85,6 +85,43 @@ EOF
   [ -z "${DATABASE_URL:-}" ]
 }
 
+@test "decrypt_value: returns plaintext unchanged when no age: prefix" {
+  run decrypt_value "plainsecret" "dev-ro"
+  [ "$status" -eq 0 ]
+  [ "$output" = "plainsecret" ]
+}
+
+@test "decrypt_value: fails clearly when age key missing for encrypted value" {
+  run env DB_CREDS_AGE_KEY="/tmp/no-such-key-$$" bash -c \
+    "source '$SCRIPT'; decrypt_value 'age:Zm9v' 'dev-ro'"
+  [ "$status" -eq 1 ]
+  [[ "$output" == *"age key not found"* ]]
+}
+
+@test "decrypt_value: round-trips an age-encrypted value with the SSH key" {
+  command -v age >/dev/null || skip "age not installed"
+  [ -f "$HOME/.ssh/id_ed25519.pub" ] || skip "no ssh key"
+  local enc
+  enc="age:$(printf 'topsecret' | age -R "$HOME/.ssh/id_ed25519.pub" | openssl base64 -A)"
+  run env DB_CREDS_AGE_KEY="$HOME/.ssh/id_ed25519" bash -c \
+    "source '$SCRIPT'; decrypt_value '$enc' 'dev-ro'"
+  [ "$status" -eq 0 ]
+  [ "$output" = "topsecret" ]
+}
+
+@test "extract_pg_vars: decrypts an age-encrypted password field" {
+  command -v age >/dev/null || skip "age not installed"
+  [ -f "$HOME/.ssh/id_ed25519.pub" ] || skip "no ssh key"
+  local enc
+  enc="age:$(printf 'secret' | age -R "$HOME/.ssh/id_ed25519.pub" | openssl base64 -A)"
+  cat > "$TEST_DIR/creds.json" <<EOF
+{"dev-ro": {"host": "localhost", "port": 5432, "user": "ro", "password": "$enc", "database": "mydb"}}
+EOF
+  export DB_CREDS_AGE_KEY="$HOME/.ssh/id_ed25519"
+  extract_pg_vars "$TEST_DIR/creds.json" "dev-ro"
+  [ "$PGPASSWORD" = "secret" ]
+}
+
 @test "extract_pg_vars: sets DATABASE_URL when url field present" {
   cat > "$TEST_DIR/creds.json" <<'EOF'
 {"dev-ro": {"host": "localhost", "url": "postgres://ro:secret@localhost/mydb"}}
