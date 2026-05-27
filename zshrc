@@ -44,12 +44,6 @@ bindkey "^R" history-incremental-search-backward
 autoload -Uz compinit
 compinit
 
-if command -v kubectl &>/dev/null; then
-  source <(kubectl completion zsh)
-  alias k='kubectl'
-  compdef k=kubectl
-fi
-
 # --- Plugin: Completions & Suggestions ---
 fpath=(~/.zsh/zsh-completions $fpath)
 [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -92,11 +86,6 @@ case $(uname) in
     [[ -f "$HOME/Documents/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/Documents/google-cloud-sdk/path.zsh.inc"
     [[ -f "$HOME/Documents/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/Documents/google-cloud-sdk/completion.zsh.inc"
 
-    # Golang
-    export GOPRIVATE=git.helio.dev
-    export GOPATH=/opt/homebrew/Cellar/go
-    export GOBIN=$GOPATH/bin
-    export PATH=$PATH:$GOBIN
     export PATH="$PATH:$HOME/.nsccli/bin:/opt/homebrew/bin"
 
     # OpenImageIO Library
@@ -111,11 +100,6 @@ case $(uname) in
     # Google Cloud SDK
     [[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/google-cloud-sdk/path.zsh.inc"
     [[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/google-cloud-sdk/completion.zsh.inc"
-
-    # Golang
-    export GOPRIVATE=git.helio.dev
-    export GOPATH=$HOME/go
-    export PATH=$PATH:$GOPATH/bin
 
     # Syntax Highlighting
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -138,11 +122,7 @@ case $(uname) in
 esac
 
 # --- Aliases ---
-alias ku=kubie
-alias kx='ku ctx'
-alias kns='ku ns'
 alias vim="$(command -v nvim)"
-alias k8s='nvim +"lua require(\"kubectl\").open()"'
 alias cd='z'
 alias ls='ls --color=auto'
 

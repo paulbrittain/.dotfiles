@@ -77,7 +77,6 @@ base_packages=(
   fzf
   bat
   direnv
-  kubectl
   zsh-syntax-highlighting
   git
   python
@@ -109,8 +108,6 @@ aur_packages=(
   zsh-theme-powerlevel10k
   pyenv
   nvm
-  kubectx
-  kubens
   ttf-meslo-nerd
 )
 

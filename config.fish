@@ -12,11 +12,6 @@ fish_vi_key_bindings
 # --- Path ---
 fish_add_path $HOME/bin /usr/local/bin
 
-# --- Golang ---
-set -x GOPRIVATE git.helio.dev
-set -x GOPATH $HOME/go
-fish_add_path $GOPATH/bin
-
 # --- pyenv ---
 set -x PYENV_ROOT $HOME/.pyenv
 fish_add_path $PYENV_ROOT/bin $PYENV_ROOT/shims
@@ -37,12 +32,6 @@ if command -q zoxide
     zoxide init fish | source
 end
 
-# --- kubectl ---
-if command -q kubectl
-    kubectl completion fish | source
-    alias k=kubectl
-end
-
 # --- Google Cloud SDK ---
 if test -f $HOME/google-cloud-sdk/path.fish.inc
     source $HOME/google-cloud-sdk/path.fish.inc
@@ -54,11 +43,7 @@ if command -q fzf
 end
 
 # --- Aliases ---
-alias ku=kubie
-alias kx='ku ctx'
-alias kns='ku ns'
 alias vim=nvim
-alias k8s='nvim +"lua require(\"kubectl\").open()"'
 alias ls='ls --color=auto'
 
 alias cd=z
