@@ -13,6 +13,9 @@ setopt HIST_FIND_NO_DUPS        # don't show dupes in search
 setopt HIST_REDUCE_BLANKS       # strip excess whitespace
 setopt HIST_EXPIRE_DUPS_FIRST   # expire dupes before unique
 setopt HIST_SAVE_BY_COPY        # atomic write, avoid clobbering
+setopt HIST_FCNTL_LOCK          # use fcntl() to lock $HISTFILE during writes;
+                                # prevents torn multi-line entries when several
+                                # tmux panes' zsh shells write concurrently
 
 setopt INC_APPEND_HISTORY_TIME  # write immediately, include elapsed time
 setopt EXTENDED_HISTORY         # timestamp support
@@ -152,6 +155,7 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 # --- fzf Integration ---
+export FZF_CTRL_R_OPTS="--exact"  # substring match by default; prefix query with ' for fuzzy
 source <(fzf --zsh)
 alias fzf="fzf --preview 'bat --color=always {}'"
 
