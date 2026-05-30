@@ -4,6 +4,11 @@ local is_mac = jit.os == "OSX"
 -- Add the current directory to the package path
 package.path = package.path .. ';' .. script_dir .. '/?.lua'
 
+-- Leader must be set BEFORE mappings are defined (remap.lua), else they bind
+-- to the default leader (\) instead of <space>.
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 require("remap")
 require("set")
 
@@ -36,9 +41,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
-
--- Set the map leader directly after installing lazy, it's what it wants.
-vim.g.mapleader = " "
 
 -- Set up diagnostic
 vim.diagnostic.config({ jump = { float = true }})
