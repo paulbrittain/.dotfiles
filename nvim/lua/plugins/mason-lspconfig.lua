@@ -45,7 +45,7 @@ return {
         })
 
         require("mason-lspconfig").setup {
-          ensure_installed = { "bashls", "lua_ls", "biome", "ts_ls" },
+          ensure_installed = { "bashls", "lua_ls", "biome", "ts_ls", "ruff" },
           automatic_enable = true
         }
     end
