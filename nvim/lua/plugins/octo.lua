@@ -11,29 +11,29 @@ return {
     {
       "<leader>oi",
       "<CMD>Octo issue list<CR>",
-      desc = "List GitHub Issues",
+      desc = "Octo: list issues",
     },
     {
       "<leader>op",
       "<CMD>Octo pr list<CR>",
-      desc = "List GitHub PullRequests",
+      desc = "Octo: list PRs",
     },
     {
       "<leader>od",
       "<CMD>Octo discussion list<CR>",
-      desc = "List GitHub Discussions",
+      desc = "Octo: list discussions",
     },
     {
       "<leader>on",
       "<CMD>Octo notification list<CR>",
-      desc = "List GitHub Notifications",
+      desc = "Octo: list notifications",
     },
     {
       "<leader>os",
       function()
         require("octo.utils").create_base_search_command { include_current_repo = true }
       end,
-      desc = "Search GitHub",
+      desc = "Octo: search GitHub",
     },
   },
   dependencies = {

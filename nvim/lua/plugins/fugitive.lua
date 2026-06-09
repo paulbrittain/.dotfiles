@@ -3,7 +3,7 @@ return {
         "tpope/vim-fugitive",
         event = "VeryLazy",
         config = function()
-            vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+            vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Fugitive: status" })
             vim.keymap.set("n", "<leader>gb", function()
                 require("fzf-lua").git_branches({
                     actions = {
@@ -18,7 +18,7 @@ return {
                         end,
                     }
                 })
-            end, { desc = "FzfLua git branches with checkout" })
+            end, { desc = "Fugitive: branches (checkout)" })
 
             -- Autocmd group and commands
             local Sabana_Fugitive = vim.api.nvim_create_augroup("Sabana_Fugitive", {})
@@ -36,15 +36,15 @@ return {
                     local opts = { buffer = bufnr, remap = false}
                     vim.keymap.set("n", "<leader>p", function()
                         vim.cmd.Git('push')
-                    end, vim.tbl_extend("force", opts, { desc = "Git push" }))
+                    end, vim.tbl_extend("force", opts, { desc = "Fugitive: push" }))
 
                     -- Rebase always
                     vim.keymap.set("n", "<leader>P", function()
                         vim.cmd.Git('pull --rebase')
-                    end, vim.tbl_extend("force", opts, { desc = "Git pull rebase" }))
+                    end, vim.tbl_extend("force", opts, { desc = "Fugitive: pull --rebase" }))
 
                     -- Set up the branch push and tracking
-                    vim.keymap.set("n", "<leader>t", ":Git push -u origin ", vim.tbl_extend("force", opts, { desc = "Git push origin" }))
+                    vim.keymap.set("n", "<leader>t", ":Git push -u origin ", vim.tbl_extend("force", opts, { desc = "Fugitive: push -u origin" }))
 
                     vim.keymap.set("n", "gh", "<cmd>diffget //2<CR>")
                     vim.keymap.set("n", "gl", "<cmd>diffget //3<CR>")

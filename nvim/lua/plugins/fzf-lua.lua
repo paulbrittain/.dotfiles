@@ -19,7 +19,12 @@ return {
         vim.keymap.set('n', '<leader>ph', fzf.command_history, {desc = "FzfLua cmd hist"})
         vim.keymap.set('n', '<leader>po', fzf.oldfiles, {desc = "FzfLua old files"})
         vim.keymap.set('n', '<leader>pr', fzf.resume, {desc = "FzfLua resume"})
-        vim.keymap.set('n', '<leader>pk', fzf.keymaps, {desc = "FzfLua keymaps (search)"})
+        vim.keymap.set('n', '<leader>pk', function()
+            -- Search only mode+lhs+desc (show_details=false drops the rhs from
+            -- the line, so a query like "octo" no longer matches every <cmd>
+            -- in the rhs). Editing modes only — no insert/cmdline/terminal noise.
+            fzf.keymaps({ show_details = false, modes = { "n", "v", "x", "o" } })
+        end, {desc = "FzfLua keymaps (search)"})
         vim.keymap.set('n', '<leader>gc', fzf.git_commits, {desc = "Git commits"})
         vim.keymap.set('n', '<leader>pn', function()
             fzf.files { cwd = vim.fn.stdpath 'config' }

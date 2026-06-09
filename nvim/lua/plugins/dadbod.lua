@@ -7,7 +7,7 @@ return {
         },
         cmd = { "DB", "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
         keys = {
-            { "<leader>db", "<cmd>DBUIToggle<cr>", desc = "Toggle DBUI" },
+            { "<leader>db", "<cmd>DBUIToggle<cr>", desc = "Dadbod: toggle UI" },
         },
         init = function()
             local creds_path = vim.fn.expand("~/.tmux-db-creds.json")

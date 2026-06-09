@@ -25,56 +25,56 @@ return {
                 function()
                     require("neotest").run.run(vim.fn.expand("%"))
                 end,
-                desc = "Run all tests in file",
+                desc = "Neotest: run file",
             },
             {
                 "<leader>tr",
                 function()
                     require("neotest").run.run()
                 end,
-                desc = "Run nearest test",
+                desc = "Neotest: run nearest",
             },
             {
                 "<leader>td",
                 function()
                     require("neotest").run.run({ suite = false, strategy = "dap" })
                 end,
-                desc = "Debug nearest test",
+                desc = "Neotest: debug nearest",
             },
             {
                 "<leader>ts",
                 function()
                     require("neotest").summary.toggle()
                 end,
-                desc = "Toggle test summary",
+                desc = "Neotest: toggle summary",
             },
             {
                 "<leader>to",
                 function()
                     require("neotest").output.open({ enter = true })
                 end,
-                desc = "Show test output",
+                desc = "Neotest: output",
             },
             {
                 "<leader>tO",
                 function()
                     require("neotest").output_panel.open()
                 end,
-                desc = "Show test output panel",
+                desc = "Neotest: output panel",
             },
             {
                 "<leader>tJ",
                 function()
                     require("neotest").jump.next({ status = "failed" })
                 end,
-                desc = "Jump to next failed test",
+                desc = "Neotest: next failed",
             },
             {
                 "<leader>tK",
                 function()
                     require("neotest").jump.prev({ status = "failed" })
                 end,
-                desc = "Jump to previous failed test",
+                desc = "Neotest: prev failed",
             },
         },
     },

@@ -18,7 +18,7 @@ return {
           else
             gitsigns.nav_hunk("next")
           end
-        end, { desc = "Next Git hunk" })
+        end, { desc = "Gitsigns: next hunk" })
 
         map("n", "[c", function()
           if vim.wo.diff then
@@ -26,42 +26,42 @@ return {
           else
             gitsigns.nav_hunk("prev")
           end
-        end, { desc = "Previous Git hunk" })
+        end, { desc = "Gitsigns: prev hunk" })
 
         -- Actions
-        map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Stage hunk" })
-        map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Reset hunk" })
+        map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Gitsigns: stage hunk" })
+        map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Gitsigns: reset hunk" })
 
         map("v", "<leader>hs", function()
           gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-        end, { desc = "Stage selected hunks" })
+        end, { desc = "Gitsigns: stage selected" })
 
         map("v", "<leader>hr", function()
           gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-        end, { desc = "Reset selected hunks" })
+        end, { desc = "Gitsigns: reset selected" })
 
-        map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Stage entire buffer" })
-        map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Reset entire buffer" })
-        map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview hunk" })
-        map("n", "<leader>hi", gitsigns.preview_hunk_inline, { desc = "Preview hunk inline" })
+        map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Gitsigns: stage buffer" })
+        map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Gitsigns: reset buffer" })
+        map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Gitsigns: preview hunk" })
+        map("n", "<leader>hi", gitsigns.preview_hunk_inline, { desc = "Gitsigns: preview hunk inline" })
         map("n", "<leader>hb", function()
           gitsigns.blame_line({ full = true })
-        end, { desc = "Show full blame for current line" })
-        map("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff against index" })
+        end, { desc = "Gitsigns: blame line" })
+        map("n", "<leader>hd", gitsigns.diffthis, { desc = "Gitsigns: diff index" })
         map("n", "<leader>hD", function()
           gitsigns.diffthis("~")
-        end, { desc = "Diff against last commit" })
+        end, { desc = "Gitsigns: diff last commit" })
         map("n", "<leader>hQ", function()
           gitsigns.setqflist("all")
-        end, { desc = "Populate quickfix list with all hunks" })
-        map("n", "<leader>hq", gitsigns.setqflist, { desc = "Populate quickfix list with current file hunks" })
+        end, { desc = "Gitsigns: qf all hunks" })
+        map("n", "<leader>hq", gitsigns.setqflist, { desc = "Gitsigns: qf file hunks" })
 
         -- Toggles
-        map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle current line blame" })
-        map("n", "<leader>tw", gitsigns.toggle_word_diff, { desc = "Toggle word diff highlighting" })
+        map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Gitsigns: toggle line blame" })
+        map("n", "<leader>tw", gitsigns.toggle_word_diff, { desc = "Gitsigns: toggle word diff" })
 
         -- Text object
-        map({ "o", "x" }, "ih", gitsigns.select_hunk, { desc = "Select Git hunk" })
+        map({ "o", "x" }, "ih", gitsigns.select_hunk, { desc = "Gitsigns: select hunk" })
       end,
     }
   end,
