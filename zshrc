@@ -41,25 +41,25 @@ set -o vi
 bindkey "^R" history-incremental-search-backward
 
 # --- Initialization ---
+# Completion dirs must be in fpath before compinit runs
+fpath=(~/.zsh/zsh-completions ~/google-cloud-sdk/completion/zsh $fpath)
 autoload -Uz compinit
-compinit
+# Full compaudit (security scan of fpath) at most once a day; -C skips it
+if [[ -n ~/.zcompdump(#qN.mh-24) ]]; then
+  compinit -C
+else
+  compinit
+fi
 
 # --- Plugin: Completions & Suggestions ---
-fpath=(~/.zsh/zsh-completions $fpath)
 [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Accept autosuggestion with Tab instead of Right Arrow
 bindkey '^ ' autosuggest-accept
 bindkey '^[[C' autosuggest-accept
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # --- Path Configuration ---
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-fpath=(~/google-cloud-sdk/completion/zsh $fpath)
 
 # --- Load zsh-defer (required for lazy loading) ---
 if [[ -f ~/.zsh/zsh-defer/zsh-defer.plugin.zsh ]]; then
@@ -109,15 +109,6 @@ case $(uname) in
 
     # OpenImageIO Library
     #export LD_LIBRARY_PATH="$HOME/helio/core/workers/thumbnailprocessor/venv/lib/python3.11/site-packages/OpenImageIO/"
-    ;;
-esac
-
-# Node Version Manager
-case $(uname) in
-  Darwin)
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"
-    [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
     ;;
 esac
 
